@@ -1,0 +1,17 @@
+<?php
+    //--------------------------------------------------------------------------
+    $host = "localhost";
+    $user = "meteo";
+    $pass = "VtpuKQQpsvyG3v2z";
+
+
+    $databaseName = "meteorologia";
+    $tableName = "datos";
+
+    //--------------------------------------------------------------------------
+    // Connect to mysql database
+    //--------------------------------------------------------------------------
+
+    $con = mysql_connect($host, $user, $pass);
+    $dbs = mysql_select_db($databaseName, $con);
+?>
