@@ -1,4 +1,7 @@
 <?php 
+	include('class/simplehtmldom/simple_html_dom.php');
+	include('changeImage.php');
+
 	$url= 'http://www.meteorologia.gov.py/interior.php?depto=7';
 	$html = file_get_html($url);
 
@@ -116,7 +119,11 @@
 
 		$srcImagenHoy = $td7->find('div img', 0)->src;
 		$srcImagenManhana = $td9->find('div img', 0)->src;
-		$srcImagenPasado = $td9->find('div img', 0)->src;
+		$srcImagenPasado = $td11->find('div img', 0)->src;
+		
+		$srcImagenHoy = change_image($srcImagenHoy);
+		$srcImagenManhana = change_image($srcImagenManhana);
+		$srcImagenPasado = change_image($srcImagenPasado);
 
 		$tempHoy = $td19->find('span strong', 0)->outertext;
 		$tempMinManhana = $td21->find('strong', 0)->outertext;

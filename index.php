@@ -22,20 +22,21 @@
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="js/plugins.js"></script>
-		<script type="text/javascript" src="js/script.js"></script>
+		<!-- <script type="text/javascript" src="js/plugins.js"></script> -->
+		
 
-        <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
-        <script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
+        <!-- <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script> -->
+        <!-- <script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script> -->
         <script type="text/javascript" src="js/libs/amcharts.js"></script>
-        <script type="text/javascript" src="js/libs/jquery-ui-1.8.21.custom.min.js"></script>
-        <script type="text/javascript" src="js/libs/jquery.prettyPhoto.js"></script>       
-        <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+        <!-- <script type="text/javascript" src="js/libs/jquery-ui-1.8.21.custom.min.js"></script> -->
+        <!-- <script type="text/javascript" src="js/libs/jquery.prettyPhoto.js"></script>        -->
+        <!-- <script type="text/javascript" src="js/libs/bootstrap.min.js"></script> -->
         <script type="text/javascript" src="js/script.js"></script>
 	</head>
 	<body>
 		<?php
-			include('class/simplehtmldom/simple_html_dom.php');
+			
+			
 			include ('pronostico.php');
 		?>
 
@@ -68,19 +69,25 @@
 						<ul class="nav navbar-nav navbar-right">
 							<li class="active">
 								<a href="reportes.php">
-									<img src="img/statistics.png" alt="estadisticas">
+									<div class="logo">
+										<img src="img/statistics.png" alt="estadisticas">
+									</div>
 								</a>
 							</li>
-							<li>
+							<li class="active">
 								<a href="http://www.uni.edu.py" target="_blank">
-									<img src="img/uni.png" alt="uni" style="padding-left: 6px;">
+									<div class="logo">
+										<img src="img/uni.png" alt="uni" style="padding-left: 6px;">
+	                            	</div>
 	                            </a>
 	                        </li>
-							<li>
-                            <a href="http://www.meteorologia.gov.py" target="_blank">
-                                <img src="img/dinac.png" alt="dinac">
-                            </a>
-                        </li>
+							<li class="active">
+								<a href="http://www.meteorologia.gov.py" target="_blank">
+									<div class="logo">
+										<img src="img/dinac.png" alt="dinac">
+									</div>
+								</a>
+							</li>
 						</ul>
 
 					</div><!-- /.navbar-collapse -->
@@ -94,7 +101,7 @@
 				<div id="pronostico">
 					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 						<p id="encarnacion">Encarnación</p >
-						<?php 
+						<?php
 							echo" <span id='actualizado'>
 							".$a["actualizacion"]."
 							</span>";
@@ -102,7 +109,7 @@
 						<div class="row" id="contenedor">
 							<!-- ########HOY####### -->
 							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-								<div id="columna1" class="well2 active"  >
+								<div id="columna1" class="well2 active" >
 									<!-- dia -->
 									<p class="dia">Hoy</p>
 									<hr>
@@ -110,7 +117,7 @@
 										<!-- temperatura -->
 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 											<br>
-												<?php 
+												<?php
 													echo" <p class='temperatura'>
 													".$a["tempHoy"]."
 													</p>";
@@ -121,21 +128,17 @@
 											</div>
 										<!-- imagen del clima -->
 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-												<div class="icon sun-shower">
-													<div class="cloud"></div>
-													<div class="cloud"></div>
-													<div class="sun">
-														<div class="rays"></div>
-													</div>
+												<div class="pronostico_img1">
+													<img <?php echo" src=' ".$a["imgHoy"]." ' "; ?> alt="">
 												</div>
 											</div>
 									</div>
 									<br>
 									<!-- pronostico -->
-										<?php 
+										<?php
 											echo" <p class='pronostico' >
 											".$a["pronosticoHoy"]."
-											</p>";	
+											</p>";
 										?>
 								</div>
 							</div>
@@ -143,16 +146,16 @@
 							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 								<div id="columna2" class="well2" >
 									<!-- dia -->
-										<?php 
+										<?php
 											echo" <p class='dia'>
 											".$a["manhana"]."
-											</p>";	
+											</p>";
 										?>
 									<hr>
 									<div class="row">
 										<!-- temperatura -->
 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-												<?php 
+												<?php
 													echo" <p class='temperatura'>
 													".$a["tempMinManhana"]."
 													</p>";
@@ -171,18 +174,16 @@
 											</div>
 										<!-- imagen del clima -->
 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-												<div class=" icon sunny" >
-													  <div class="sun" >
-													    <div class="rays"></div>
-													  </div>
+												<div class="pronostico_img2">
+													<img <?php echo" src=' ".$a["imgManhana"]." ' "; ?> alt="">
 												</div>
 											</div>
 									</div>
 									<!-- pronostico -->
-										<?php 
+										<?php
 											echo" <p class='pronostico' >
 											".$a["pronosticoManhana"]."
-											</p>";	
+											</p>";
 										?>
 								</div>
 							</div>
@@ -190,16 +191,16 @@
 							<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 								<div id="columna3" class="well2" >
 									<!-- dia -->
-										<?php 
+										<?php
 											echo" <p class='dia'>
 											".$a["pasado"]."
-											</p>";	
+											</p>";
 										?>
 									<hr>
 									<div class="row">
 										<!-- temperatura -->
 											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-												<?php 
+												<?php
 													echo" <p class='temperatura'>
 													".$a["tempMinPasado"]."
 													</p>";
@@ -207,7 +208,7 @@
 												<div class="min-max" id="min">
 													<span>min</span>
 												</div>
-												<?php 
+												<?php
 													echo" <p class='temperatura'>
 													".$a["tempMaxPasado"]."
 													</p>";
@@ -217,25 +218,21 @@
 												</div>
 											</div>
 										<!-- imagen del clima -->
-											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">								
-												<div class="icon sun-shower">
-													<div class="cloud"></div>
-													<div class="cloud"></div>
-													<div class="sun">
-														<div class="rays"></div>
-													</div>
+											<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+												<div class="pronostico_img3">
+													<img <?php echo" src=' ".$a["imgPasado"]." ' "; ?> alt="">
 												</div>
 											</div>
 									</div>
 									<!-- pronostico -->
-										<?php 
+										<?php
 											echo" <p class='pronostico' >
 											".$a["pronosticoPasado"]."
-											</p>";	
+											</p>";
 										?>
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
 				</div>
 				<div id="lecturas-estacion">
@@ -246,8 +243,8 @@
 									<label id='fechaHoraData'></label>
 								</header>
 								<div>
-						            <?php
-						                require 'class/Meteo.php';
+									<?php
+										require 'class/Meteo.php';
 						                $m = new Meteo();
 						                $arrFechaHora = $m->getFechaHoraUltimaLectura();
 						                $fecha = $arrFechaHora['fecha'];
@@ -273,12 +270,12 @@
 						                    </div><?php
 						                }   ?>
 								</div>
-						        <!-- Temperatura -->
+								<!-- Temperatura -->
 								<section>
 									<div class="lecturas row well3">
 										<p class="lectura-titulo">Temperatura</p>
 										<div class="col-xs-2 col-sm-2 col-md-2">
-											<div class="logo">
+											<div class="iconos">
 												<img src="img/SVG/sw-52.svg" alt="radiacion">
 											</div>
 										</div>
@@ -302,9 +299,46 @@
 												<div id="botonera-content">
 													<span class="plus">
 														<a href="#" title="Lorem ipsum">
-															<i class="glyphicon glyphicon-plus"></i>
+															<i id="gbtn" class="glyphicon glyphicon-plus"></i>
 														</a>
 													</span>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="grafico1">
+											<ul class="nav nav-tabs">
+												<li class="active" ><a data-toggle="tab" id="aTabTemp" href="#tabTemp">Temperatura</a></li>
+												<li><a data-toggle="tab" id="aTabTempMaxMin" href="#tabTempMaxMin">Máximas vs Mínimas</a></li>
+											</ul>
+											<div class="tab-content">
+												<div id="tabTemp" class="tab-pane fade active in">
+													<div id="graficoTemp" style="
+													    background: white;
+													    height: 350px;
+													">
+													<!-- <img src="img/cargando.gif"> -->
+														<div class="pre">
+															<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve" width="30" height="30">
+																<rect fill="#FBBA44" width="15" height="15">
+																	<animateTransform attributeName="transform" attributeType="XML" type="translate" dur="1.7s" values="0,0;15,0;15,15;0,15;0,0;" repeatCount="indefinite"/>
+																</rect>
+																<rect x="15" fill="#E84150" width="15" height="15">
+																	<animateTransform attributeName="transform" attributeType="XML" type="translate" dur="1.7s" values="0,0;0,15;-15,15;-15,0;0,0;" repeatCount="indefinite"/>
+																</rect>
+																<rect x="15" y="15" fill="#62B87B" width="15" height="15">
+																	<animateTransform attributeName="transform" attributeType="XML" type="translate" dur="1.7s" values="0,0;-15,0;-15,-15;0,-15;0,0;" repeatCount="indefinite"/>
+																</rect>
+																<rect y="15" fill="#2F6FB6" width="15" height="15">
+																	<animateTransform attributeName="transform" attributeType="XML" type="translate" dur="1.7s" values="0,0;0,-15;15,-15;15,0;0,0;" repeatCount="indefinite"/>
+																</rect>
+															</svg>
+														</div>
+													</div>
+												</div>
+												<div id="tabTempMaxMin" class="tab-pane fade">
+													<div id="graficoTempMaxMin">
+														<img src="img/cargando.gif">
+													</div>
 												</div>
 											</div>
 										</div>
@@ -315,7 +349,7 @@
 									<div class="lecturas row well3">
 										<p class="lectura-titulo">Velocidad del Viento</p>
 										<div class="col-xs-2 col-sm-2 col-md-2">
-											<div class="logo">
+											<div class="iconos">
 												<img src="img/wind-sock.svg" alt="velocidad">
 											</div>
 										</div>
@@ -352,7 +386,7 @@
 									<div class="lecturas row well3">
 										<p class="lectura-titulo">Dirección del Viento</p>
 										<div class="col-xs-2 col-sm-2 col-md-2">
-											<div class="logo">
+											<div class="iconos">
 												<img src="img/SVG/sw-41.svg" alt="direccion">
 											</div>
 										</div>
@@ -385,7 +419,7 @@
 									<div class="lecturas row well3">
 										<p class="lectura-titulo">Precipitaciones</p>
 										<div class="col-xs-2 col-sm-2 col-md-2">
-											<div class="logo">
+											<div class="iconos">
 												<img src="img/SVG/sw-22.svg" alt="direccion">
 											</div>
 										</div>
@@ -473,8 +507,98 @@
 					</div>
 				</div>
 				<!-- </div> -->
-			</div>
-		</div>
+			</div> <!-- row -->
 
+		</div> <!-- container -->
+		<footer>
+			<div class="row" style="width: 100% !important";>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<div id="imagen_footer" style="padding: 20%">
+						<a href="http://www.uni.edu.py" target="_blank">
+							<div class="logo">
+								<img src="img/uni.png" alt="uni" >
+							</div>
+						</a>
+						 <a href="http://www.meteorologia.com.py" target="_blank">
+							<div class="logo">
+								<img src="img/dinac.png" alt="dinac">
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+					<p id="descripcion">Esta página es producto de tareas en conjunto entre el Departamento de Informática de la Universidad Nacional de Itapúa y la Dirección de Meteorología e Hidrología de la DINAC, en el marco del convenio entre ambas partes.</p>
+				</div>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<h3>UNI</h3>
+					<div class="footer-center inline">
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Universidad+Nacional+de+Itap%C3%BAa/@-27.3069477,-55.8873538,18z/data=!4m5!3m4!1s0x0:0xf31765db5e25c553!8m2!3d-27.3067583!4d-55.8874941?hl=es-419" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
+								</span>
+								<p style="line-height: 11px;">Abog. Lorenzo Zacarías 255 y Ruta 1 - <span>Encarnación, Paraguay</span></p>
+							</div><!-- /input-group -->
+						</div>
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+								</span>
+								<p>+595 71 206990</p>
+							</div><!-- /input-group -->
+						</div>
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<a class="btn btn-xs btn-square" href="mailto:informatica@uni.edu.py" target="_blank" role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  </a>
+								</span>
+								<p>informatica@uni.edu.py</p>
+							</div><!-- /input-group -->
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<h3>DINAC</h3>
+					<div class="footer-center ">
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Centro+Meteorol%C3%B3gico+Nacional/@-25.2864383,-57.6553166,15z/data=!4m5!3m4!1s0x0:0x9626810dc66e423c!8m2!3d-25.2864383!4d-57.6553166" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
+								</span>
+								<p style="line-height: 11px;">Cnel Francisco López 1080 c/ De La Conquista - <span>Asunción, Paraguay</span></p>
+							</div><!-- /input-group -->
+						</div>
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+								</span>
+								<p>+595 21 4381000</p>
+							</div><!-- /input-group -->
+						</div>
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+								</span>
+								<p>+595 21 4381220</p>
+							</div><!-- /input-group -->
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+					<ul>
+						<li><a href="http://www.meteorologia.gov.py/adm/uploads/Tasas.pdf" target="_blank" title="Tasas y tarifas establecidas para reportes del servicio meteorologico para el publico en general">Precios</a></li>
+						<li><a href="http://www.meteorologia.gov.py/serviciopublico.php" target="_blank" title="">Consultas</a></li>
+						<li><a href="mailto:director@meteorologia.gov.py" target="_blank" title="">Contacto</a></li>
+					</ul>
+				</div>
+			</div>
+			<div style="background-color: #111;">
+				<p style="margin-bottom: 0px;">Copyright © 2016 Universidad Nacional de Itapúa.</p>
+			</div>
+		</footer>
 	</body>
 </html>

@@ -15,8 +15,22 @@ var fechaMesAnterior;
 var data; //datos de la consulta
 var desde; //fecha desde
 var hasta; //fecha hasta
+$(document).ready(function () {
+    $("#grafico1").hide();
+});
 
-
+$(document).ready(function() {
+    $("#botonera").click(function(){
+        $('#grafico1').fadeToggle();
+        if($('#gbtn').hasClass('glyphicon glyphicon-plus')){
+            $('#gbtn').removeClass('glyphicon glyphicon-plus');
+            $('#gbtn').addClass('glyphicon glyphicon-chevron-up');
+        }else{
+            $('#gbtn').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn').addClass('glyphicon glyphicon-plus');
+        }
+    });
+});
 
 $(document).ready(function () {
     
