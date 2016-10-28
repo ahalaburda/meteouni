@@ -1,0 +1,9 @@
+#!/usr/bin/php
+<?php
+$quality = 10;
+for ($i = 0; $i < 6; $i++) {
+    $image = imagecreatefrompng('l1'.$i.'.png');
+    imagejpeg($image, 'l1'.$i.'.jpg', $quality);
+    imagedestroy($image);
+}
+?>
