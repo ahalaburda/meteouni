@@ -17,6 +17,10 @@ var desde; //fecha desde
 var hasta; //fecha hasta
 $(document).ready(function () {
     $("#grafico1").hide();
+
+    $('.flip').click(function(){
+        $(this).find('.card').toggleClass('flipped');
+    });
 });
 
 $(document).ready(function() {
@@ -42,13 +46,13 @@ $(document).ready(function () {
         pronostico(); //edita el pronostico
         setData(); //setea los datos iniciales
         slides();  //carga los slides
-        setRadar();
+        // setRadar(); ########################################################################
         
         //timer para recargar los graficos
-        setInterval(setData, 60000);
+        // setInterval(setData, 60000); ########################################################################
         //timers para el radar doppler
-        setInterval(setRadar, 1000); //hace que se muestren en secuencia
-        setInterval(reloadRadar, 60000); //actualiza las imagenes del radar cada 100000 milisegundos
+        // setInterval(setRadar, 1000); //hace que se muestren en secuencia  ########################################################################
+        // setInterval(reloadRadar, 60000); //actualiza las imagenes del radar cada 100000 milisegundos ########################################################################
 
         $("a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'fast', slideshow:10000, hideflash:true});
 
@@ -323,8 +327,8 @@ function pronostico() {
  */
 function setData() {
     $.ajax({
-        url:'api.php?f=getValores',
-        // url:'http://meteo.uni.edu.py/class/getValores.json',
+        // url:'api.php?f=getValores',
+        url:'/class/getValores.json',
         data:"",
         type:"GET",
         async:false,
