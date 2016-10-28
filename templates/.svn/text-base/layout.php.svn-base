@@ -1,0 +1,106 @@
+<!doctype html>
+
+<html class="no-js" lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+        <title>Meteorologia UNI - DINAC</title>
+        <meta name="description" content="Estacion meteorologica UNI">
+        <meta name="keywords" content="tiempo, clima, pronostico, doppler, satellite, calor, frio, lluvia, viento, presion, radiacion, humedad, temperatura, encarnacion, itapua, uni">
+
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/jquery-ui-1.8.21.custom.css">
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/elastislide.css" />
+        <link rel="stylesheet" type="text/css" href="css/prettyPhoto.css" />
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+        <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/libs/amcharts.js"></script>
+        <script type="text/javascript" src="js/libs/jquery-ui-1.8.21.custom.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery.prettyPhoto.js"></script>       
+        <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/script.js"></script>
+
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-35754384-1']);
+            _gaq.push(['_setDomainName', 'uni.edu.py']);
+
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </head>
+
+    <body>
+
+
+        <div id="header-container">
+            <header class="wrapper clearfix">
+
+                <div id="title">
+                    <h2>
+                        Universidad Nacional de Itapúa <br>
+                        Dirección Nacional de Aeronáutica Civil
+                    </h2>
+                    <h4>
+                        Datos de la Estación de Encarnación - WMO: 086297
+                    </h4>
+                </div>
+
+
+                <h2 id="title2">UNI -
+                    DINAC</h2>
+                <nav>
+                    <ul>
+                        <li>                
+                            <?php echo $view->reportesLink; ?>  
+                        </li>
+                        <li>
+                            <a href="http://www.uni.edu.py" target="_blank">
+                                <img src="img/uni.png" alt="uni" style="padding-left: 6px;">
+                                <br>
+                                <label>UNI</label>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.meteorologia.gov.py" target="_blank">
+                                <img src="img/dinac.png" alt="dinac" >
+                                <br>
+                                <label>DINAC</label>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+
+        <div id="main-container">
+            <?php include_once ($view->content); ?>       
+        </div>
+        
+        <?php include_once($view->radar_modal); ?>
+
+        <div id="footer-container">
+            <footer class="wrapper">
+                Desarrollado por el Departamento de Informática
+                <br>
+                © 2012 <a href="http://uni.edu.py"> Universidad Nacional de Itapúa</a> | Todos los derechos
+                reservados
+            </footer>
+        </div>
+
+
+    </body>
+</html>
