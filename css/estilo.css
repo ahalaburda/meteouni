@@ -15,6 +15,7 @@ body{
   font-size: 13px;
   width: auto;
   border: none;
+  border-radius: 0px;
 /*  margin-bottom: 0px;
   padding: 40px 0px;*/
 }
@@ -36,9 +37,24 @@ body{
     line-height: 5em;
     vertical-align: middle;
     padding: 0 24px;
+    font-family: Lato, sans-serif;
   } 
 }
+.navbar-default .navbar-nav>.active>a {
+    color: #FFF;
+    background-color: #0F2D40;
+    height: 6em;
 
+}
+.navbar-default .navbar-nav>.active>a:hover {
+    color: #FFF;
+    background-color: #0F2D40;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #FFF;
+    background-color: #0F2D40;
+}
 @media (min-width: 992px) {
   .navbar-nav > li a {
     padding: 0 48px;
@@ -163,11 +179,11 @@ body{
       margin-bottom: -32767px;
     }*/
     #titulo{
-    	font-family: 'Lato', sans-serif;
+    	/*font-family: 'Lato', sans-serif;*/
     	font-family: 'Open Sans', sans-serif;
-    	font-family: 'Raleway', sans-serif;
-    	font-family: 'Quicksand', sans-serif;
-    	font-size: 27px;
+    	/*font-family: 'Raleway', sans-serif;*/
+    	/*font-family: 'Quicksand', sans-serif;*/
+    	font-size: 1.4em;
     	color: #FFF;
     	text-align: center;
     }
@@ -242,8 +258,8 @@ body{
     }
     .dato{
         display: -webkit-box;
-        padding-top: 24px;
-        padding-bottom: 23px;
+        padding-top: 21px;
+        padding-bottom: 21px;
     }
     .last-lecturas{
         text-align: center;

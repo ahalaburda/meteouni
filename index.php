@@ -56,8 +56,8 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="#">link</a></li>
-                <li><a href="#">link</a></li>
+                <li class="active"><a href="#">Inicio</a></li>
+                <li><a href="/reportes.php">Reportes</a></li>
 					<li class="hidden-xs">				
 						<div id="titulo">
 							<span id="titulo">Universidad Nacional de Itapúa <br> Dirección Nacional de Aeronáutica Civil
