@@ -46,13 +46,13 @@ $(document).ready(function () {
         pronostico(); //edita el pronostico
         setData(); //setea los datos iniciales
         slides();  //carga los slides
-        // setRadar(); ########################################################################
+        setRadar();
         
         //timer para recargar los graficos
-        // setInterval(setData, 60000); ########################################################################
+        setInterval(setData, 60000);
         //timers para el radar doppler
-        // setInterval(setRadar, 1000); //hace que se muestren en secuencia  ########################################################################
-        // setInterval(reloadRadar, 60000); //actualiza las imagenes del radar cada 100000 milisegundos ########################################################################
+        setInterval(setRadar, 1000); //hace que se muestren en secuencia  
+        setInterval(reloadRadar, 60000); //actualiza las imagenes del radar cada 100000 milisegundos
 
         $("a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'fast', slideshow:10000, hideflash:true});
 

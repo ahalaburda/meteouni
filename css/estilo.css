@@ -3,117 +3,105 @@ body{
 	color: #EEE;
 }
 /*############NAVBAR###############*/
-
-
-@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
-
-.navbar {
-  background-color: #071721;
-  min-height: auto;
-  position: relative;
-  top: 0px;
-  font-size: 13px;
-  width: auto;
-  border: none;
-  border-radius: 0px;
-/*  margin-bottom: 0px;
-  padding: 40px 0px;*/
-}
-.navbar-brand {
-  padding: 0 15px;
-  height: 96px;
-}
-
-@media (min-width: 768px) {
-  .navbar-nav {
-    position: relative;
-    right: -50%;
-  }
-  .navbar-nav > li {
-    position: relative;
-    left: -50%;
-  }
-  .navbar-nav > li a {
-    line-height: 5em;
-    vertical-align: middle;
-    padding: 0 24px;
-    font-family: Lato, sans-serif;
-  } 
-}
-.navbar-default .navbar-nav>.active>a {
-    color: #FFF;
-    background-color: #0F2D40;
-    height: 6em;
-
-}
-.navbar-default .navbar-nav>.active>a:hover {
-    color: #FFF;
-    background-color: #0F2D40;
-}
-
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
-    color: #FFF;
-    background-color: #0F2D40;
-}
-@media (min-width: 992px) {
-  .navbar-nav > li a {
-    padding: 0 48px;
-  } 
-}
-
-@media (min-width: 1200px) {
-  .navbar-nav > li a {
-    padding: 0 68px;
-  } 
-}
-
-
-    /*.nav>li>a>img {
-        max-width: 30%;
-    }*/
-/*    nav ul li img {
-        height: 40px;
+    @font-face {
+        font-family: 'ADAM.CG PRO';
+        src: url("ADAM.CG PRO.otf") format("opentype");
     }
-    .navbar-default .navbar-nav>.active>a{
-        width: 100px;
-        height: 78px;
-    }*/
-/*    .navbar{
-    	border:0px;
-    	border-top: 2px solid #3E8C84;
-    	border-radius: 0px;
-    }
+
     .navbar-default {
-    	background-color: #ECF0F1;
-        background-color: #f8f8f8;
+        background-color: #071721;
+        border: none;
+        border-radius: 0px;
     }
-    .navbar-right{
-        font-family: Lato, sans-serif;
-    }*/
-/*    .logo {
-        float: left;
-        width: 60px;
+    .navbar-brand {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
         text-align: center;
-    }*/
-    .logo img {
-        /*height: 60px;*/
+        margin: auto;
+        min-height: auto;
     }
-    /*    img {
-            border: 0;
-            -ms-interpolation-mode: bicubic;
+    .navbar-toggle {
+        z-index:3;
+        border-radius: 0px;
+        border:0px;
+    }
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #FFF;
+    }
+    .navbar-default .navbar-toggle:hover {
+        background-color: #296B73;
+    }
+    @media (min-width: 768px) {
+        .navbar-nav > li a {
+            line-height: 5em;
             vertical-align: middle;
-        }*/
+            padding: 0 24px;
+            font-family: Lato, sans-serif;
+        } 
+        .navbar-default .navbar-nav>.active>a {
+            color: #FFF;
+            background-color: #0F2D40;
+            height: 6em;
+        }
+    }
+    .navbar-default .navbar-nav>.active>a {
+        color: #FFF;
+        background-color: #0F2D40;
+    }
+    .navbar-default .navbar-nav>.active>a:hover {
+        color: #FFF;
+        background-color: #0F2D40;
+    }
+    .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+        color: #FFF;
+        background-color: #0F2D40;
+    }
+    @media (max-width: 768px) {
+        .navbar-brand {
+            width: initial;
+        }
+    }
+    @media (min-width: 768px) {
+        .navbar-nav > li a {
+            padding: 0 5px;
+        }
+        .navbar-brand #titulo {
+            font-size: 15px !important;
+        }
+    }
+    @media (min-width: 992px) {
+        .navbar-nav > li a {
+            padding: 0 28px;
+        }
+        .navbar-brand #titulo {
+            font-size: 1em !important;
+        }
+    }
+    @media (min-width: 1200px) {
+        .navbar-nav > li a {
+            padding: 0 50px;
+        }
+        .navbar-brand #titulo {
+            font-size: 1em !important;
+        }
+    }
+    .navbar-brand #titulo{
+        padding-top: 0%;
+        padding-bottom: 2%;
+        font-size: 1em;
+        color: #FFF;
+        text-align: center;
+        font-family:"ADAM.CG PRO";
+    }
 /*############VARIOS###############*/
     .well2 {
-     /*   min-height: 200px;*/
         padding: 10px;
         margin-bottom: 20px;
-        /*background-color: #34495e;*/
          background-color: #296B73;
         border-radius: 0px;
         color: #fff;
-    /*    height: auto;
-        min-height: initial;*/
     }
     .well3 {
         padding: 10px;
@@ -121,6 +109,7 @@ body{
          background-color: #194759;
         border-radius: 0px;
         color: #fff;
+        font-family: 'Open Sans',sans-serif;
     }
 /*############PronosticoDinac######*/
     .dia{
@@ -170,23 +159,7 @@ body{
     	font-size: 24px;
     	margin: 1px;
     }
-    /*#contenedor {
-      overflow: hidden;
-    }
-     
-    #columna1, #columna2, #columna3 {
-      padding-bottom: 32767px;
-      margin-bottom: -32767px;
-    }*/
-    #titulo{
-    	/*font-family: 'Lato', sans-serif;*/
-    	font-family: 'Open Sans', sans-serif;
-    	/*font-family: 'Raleway', sans-serif;*/
-    	/*font-family: 'Quicksand', sans-serif;*/
-    	font-size: 1.4em;
-    	color: #FFF;
-    	text-align: center;
-    }
+
     #titulo2{
     	font-family: 'Lato', sans-serif;
     	font-size: 15px;
@@ -195,8 +168,8 @@ body{
 
     .lectura-titulo {
         font-size: 20px;
-        font-family: Open Sans, sans-serif;
-        color: white;
+        font-family: 'Open Sans', sans-serif;
+        color: #FFF;
     }
     .pronostico_img1 img{
         position: absolute;
@@ -250,16 +223,11 @@ body{
     .dato h3{
         margin-top: 0px;
         font-size: 15px;
-        font-family: Open Sans, sans-serif;
+        font-family: 'Open Sans', sans-serif;
         color: white;
     }
     .dato img{
         height: 55px;
-    }
-    .dato{
-        display: -webkit-box;
-        padding-top: 21px;
-        padding-bottom: 21px;
     }
     .last-lecturas{
         text-align: center;
@@ -267,11 +235,33 @@ body{
     .last-lecturas .dato {
         float: inherit;
         position: relative;
+        font-family: 'Open Sans',sans-serif;
+        text-decoration: none !important;
+        padding-top: 21px;
+        padding-bottom: 21px;
     }
     .last-lecturas div {
         display: inline-block;
         text-align: center;
     }
+    #varios{
+        padding-right: 1px;
+        padding-left: 1px;
+    }
+    @media (min-width: 992px) {
+        #varios{
+            padding-right: 1px;
+            padding-left: 19px;
+        }
+    }
+    @media (max-width: 992px) {
+            .dato{
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+     }
 /*############PRELOADER############*/
     .pre  {
         position: absolute;
@@ -310,11 +300,23 @@ body{
     footer .input-group-btn {
             vertical-align: top;
     }
-    footer h3{
+    footer a>h3{
         font-family: 'Lato', sans-serif;
-        margin-top: 2%;
+        text-decoration: none!important;
+        color: #FFF;
+    }
+    footer a>h3:hover{
+        font-family: 'Lato', sans-serif;
+        color: #848484;
+    }
+    footer a{
+        text-decoration: none!important;
+    }
+    footer a:hover{
+        text-decoration: none!important;
     }
     footer p{
+        font-family: 'Lato',sans-serif;
         margin:0px;
         font-size: 12px;
         line-height: 16px;
@@ -331,7 +333,7 @@ body{
         margin-top: 1em;
     }
     footer li>a{
-        font-family: Lato, sans-serif;
+        font-family: 'Lato', sans-serif;
         text-decoration: none!important;
         font-size: 20px;
         font-weight: 500;
@@ -345,49 +347,57 @@ body{
         text-align: center;
     }
 
-/*##########################flip#############################3*/
-.flip {
-    -webkit-perspective: 800;
-    perspective: 800;
-    position: relative;
-    padding-bottom: 20px;
-/*    text-align: center;*/
-}
-.flip .card.flipped {
-    -webkit-transform: rotatey(-180deg);
-    transform: rotatey(-180deg);
-}
-.flip .card {
-    height: 100%;
-    -webkit-transform-style: preserve-3d;
-    -webkit-transition: 0.5s;
-    transform-style: preserve-3d;
-    transition: 0.5s;
-}
-.flip .card .face {
-    -webkit-backface-visibility: hidden ;
-    backface-visibility: hidden ;
-    z-index: 2;
-}
-.flip .card .front {
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-}
-.flip .card .back {
-    -webkit-transform: rotatey(-180deg);
-    transform: rotatey(-180deg);
-}
-.inner{
-    margin:0px !important;
-}
+/*##########################flip#############################*/
+    .flip {
+            -webkit-animation-delay: 5s; 
+         animation-delay: 5s;
+        -webkit-perspective: 800;
+        perspective: 800;
+        position: relative;
+        padding-bottom: 20px;
+    /*    text-align: center;*/
+    }
+    .flip .card.flipped {
+        -webkit-transform: rotatey(-180deg);
+        transform: rotatey(-180deg);
+    }
+    .flip .card {
+        height: 100%;
+        -webkit-transform-style: preserve-3d;
+        -webkit-transition: 0.5s;
+        transform-style: preserve-3d;
+        transition: 0.5s;
+    }
+    .flip .card .face {
+        -webkit-backface-visibility: hidden ;
+        backface-visibility: hidden ;
+        z-index: 2;
+    }
+    .flip .card .front {
+        position: absolute;
+        width: 100%;
+        z-index: 1;
+    }
+    .flip .card .back {
+        -webkit-transform: rotatey(-180deg);
+        transform: rotatey(-180deg);
+    }
+    .inner{
+        margin:0px !important;
+    }
+/*/////////////////////////RADAR/////////////////*/
+    #radar>img{
+        height: 296px;
+        width: 100%;
+        position: initial;
+    }
+    /*////////////*/
+    #boton-pronostico{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 80%;
+        transition: color 0.5s ease;
+    }
+    #boton-pronostico:hover{
+        color:#3E8C84;
+    }
 
-/*////////////*/
-#boton-pronostico{
-    font-family: Open Sans, sans-serif;
-    font-size: 80%;
-    transition: color 0.5s ease;
-}
-#boton-pronostico:hover{
-    color:#3E8C84;
-}
