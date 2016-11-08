@@ -10,13 +10,15 @@
 		<!-- animate.css -->
 		<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> -->
 		<!-- Google Fonts - Lato, Open Sans, Raleway -->
-	   <link href="https://fonts.googleapis.com/css?family=Lato:100i,400" rel="stylesheet">
-	   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-	   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-	   <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lato:100i,400" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/modal-w3.css">
         <link rel="stylesheet" href="css/estilo.css">
+
         <link rel="stylesheet" href="css/jquery-ui-1.8.21.custom.css">
 
 		
@@ -25,7 +27,7 @@
 		<!-- Bootstrap JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 		<!-- SCROLL REVEAL -->
-		<script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
+		<!-- <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script> -->
 
 		
         <!-- <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script> -->
@@ -320,102 +322,56 @@
 
 				})(window);
         </script>
+
 	</head>
 	<body>
 		<?php
 			include ('pronostico.php');
 		?>
 
-<!-- <nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid">
-
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">
-				<div id="titulo">
-					<span id="titulo">UNI - DINAC</span>
-				</div>
-			</a>
-		</div>
-
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Inicio</a></li>
-				<li><a href="/reportes.php">Reportes</a></li>
-				<li class="hidden-xs">
-					<div id="titulo">
-						<span id="titulo">Universidad Nacional de Itapúa <br> Dirección Nacional de Aeronáutica Civil</span>
-					</div>
-				</li>
-				<li><a href="http://www.meteorologia.gov.py/satelital.php" target="_blank">Sensores Remotos</a></li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-
-	</div>
-</nav>
- -->
-
- <nav class="navbar navbar-default" role="navigation">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-<div class="container">
-	    <a class="navbar-brand hidden-xs" href="#">
-	    	<div id="titulo">
-				<span id="titulo">Universidad Nacional de Itapúa <br> Dirección Nacional de Aeronáutica Civil</span>
+		<nav class="navbar navbar-default" role="navigation">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		    </div>
+			<div class="container">
+				    <a class="navbar-brand hidden-xs" href="#">
+				    	<div id="titulo">
+							<span id="titulo">Universidad Nacional de Itapúa <br> Dirección Nacional de Aeronáutica Civil</span>
+						</div>
+					</a>
+				    <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">
+						<div id="titulo">
+							<span id="titulo">UNI - DINAC</span>
+						</div>
+					</a>
+			    <!-- Collect the nav links, forms, and other content for toggling -->
+			    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+			      <ul class="nav navbar-nav navbar-left">
+			        <li class="active"><a href="#">Inicio</a></li>
+			        <li><a href="/reportes.php">Reportes</a></li>
+			      </ul>
+			      <ul class="nav navbar-nav navbar-right">
+					<li><a href="http://www.meteorologia.gov.py/satelital.php" target="_blank">Sensores Remotos</a></li>
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+			          <ul class="dropdown-menu">
+			            <li><a href="#">Action</a></li>
+			            <li><a href="#">Another action</a></li>
+			            <li><a href="#">Something else here</a></li>
+			            <li class="divider"></li>
+			            <li><a href="#">Separated link</a></li>
+			          </ul>
+			        </li>
+			      </ul>
+			    </div><!-- /.navbar-collapse -->
 			</div>
-		</a>
-	    <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#">
-			<div id="titulo">
-				<span id="titulo">UNI - DINAC</span>
-			</div>
-		</a>
-    
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-left">
-        <li class="active"><a href="#">Inicio</a></li>
-        <li><a href="/reportes.php">Reportes</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-		<li><a href="http://www.meteorologia.gov.py/satelital.php" target="_blank">Sensores Remotos</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-</div>
-</nav>
+		</nav>
 
 
 		<div class="container">
@@ -623,35 +579,47 @@
 						</div>
 						<div id="radar2" data-scrollreveal="enter top over 0.5s after 0.8s">
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="padding-right: 0px; padding-left: 0px;">
-							<div class="well3">
-							    <div id="radar" class="hidden-xs hidden-sm">
-							        <img src="img/doppler/l10.png" id="senhal10""/>
-									<img src="img/doppler/l11.png" id="senhal11" style="display: none"/>
-							        <img src="img/doppler/l12.png" id="senhal12" style="display: none"/>
-							        <img src="img/doppler/l13.png" id="senhal13" style="display: none"/>
-							        <img src="img/doppler/l14.png" id="senhal14" style="display: none"/>
-							        <img src="img/doppler/l15.png" id="senhal15" style="display: none"/>
-							       <!--  <img src="img/doppler/dpto.png" id="radarMapa"/>  -->
-							    </div>
+								<div class="well3">
+									<div id="radar" class="hidden-xs hidden-sm">
+										<div class="hovereffect">
+											<video id="myImg" width="350" height="296" alt="hola" autoplay loop>
+												<source src="img/doppler/video4.mp4" type="video/mp4" />
+												Your browser does not support the video tag.
+											</video>
+											<div id="overlay1" class="overlay">
+												<a class="info" href="#" title="">
+													<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
+												</a>
+											</div>
+										</div>
+								
+										<div id="myModal" class="modal">
+											<span class="close">×</span>
+											<!-- <img class="modal-content" id="img01"> -->
+											<video class="modal-content" id="img01"  autoplay loop>
+												<source src="img/doppler/video3.mp4" type="video/mp4" />
+												Your browser does not support the video tag.
+											</video>
+											<div id="caption"></div>
+										</div>
+									</div>
+								
 
-							    <div class="last-lecturas hidden-md hidden-lg">
-									<div class="dato">
-							    		<a href="http://www.meteorologia.gov.py/radar/" title="doppler"> 
-							    			<h3>Radar Meteorologico</h3>
-							    			<img src="img/radar.svg" alt="radar" >
-							    		</a>
-							    	</div>
-							    	<div class="dato">
-							    		<a href="http://www.meteorologia.gov.py/sudamerica.html" title="doppler"> 
-							    			<h3>Imágen Satelital</h3>
-							    			<img src="img/GOES.svg" alt="radar" >
-							    		</a>
-							    	</div>
-							    </div>
-
-
-
-							</div>
+									<div class="last-lecturas hidden-md hidden-lg">
+										<div class="dato">
+											<a href="http://www.meteorologia.gov.py/radar/" title="doppler"> 
+												<h3>Radar Meteorologico</h3>
+												<img src="img/radar.svg" alt="radar" >
+											</a>
+										</div>
+										<div class="dato">
+											<a href="http://www.meteorologia.gov.py/sudamerica.html" title="doppler"> 
+												<h3>Imágen Satelital</h3>
+												<img src="img/GOES.svg" alt="radar" >
+											</a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="pronosticos-varios" data-scrollreveal="enter top over 0.5s after 1s">
@@ -922,99 +890,122 @@
 			</div> <!-- row -->
 		</div> <!-- container -->
 
-<footer>
-	<div class="row" style="width: 100% !important";>
-		<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 hidden-xs">
-			<div id="imagen-footer">
-				<a href="http://www.uni.edu.py" target="_blank">
-					<div class="logo">
-						<img src="img/uni.png" alt="uni" >
+		<footer>
+			<div class="row" style="width: 100% !important";>
+				<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 hidden-xs">
+					<div id="imagen-footer">
+						<a href="http://www.uni.edu.py" target="_blank">
+							<div class="logo">
+								<img src="img/uni.png" alt="uni" >
+							</div>
+						</a>
+						 <a href="http://www.meteorologia.gov.py" target="_blank">
+							<div class="logo">
+								<img src="img/dinac.png" alt="dinac">
+							</div>
+						</a>
 					</div>
-				</a>
-				 <a href="http://www.meteorologia.gov.py" target="_blank">
-					<div class="logo">
-						<img src="img/dinac.png" alt="dinac">
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+					<p id="descripcion">Esta página es producto de tareas en conjunto entre el Departamento de Informática de la Universidad Nacional de Itapúa y la Dirección de Meteorología e Hidrología de la DINAC, en el marco del convenio entre ambas partes.</p>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+					<a href="http://www.uni.edu.py" target="_blank">
+						<h3>UNI</h3>
+					</a>
+					<div class="footer-center inline">
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Universidad+Nacional+de+Itap%C3%BAa/@-27.3069477,-55.8873538,18z/data=!4m5!3m4!1s0x0:0xf31765db5e25c553!8m2!3d-27.3067583!4d-55.8874941?hl=es-419" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
+								</span>
+								<p style="line-height: 11px;">Abog. Lorenzo Zacarías 255 y Ruta 1 - <span>Encarnación, Paraguay</span></p>
+							</div><!-- /input-group -->
+						</div>
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+								</span>
+								<p>+595 71 206990</p>
+							</div><!-- /input-group -->
+						</div>
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<a class="btn btn-xs btn-square" href="mailto:informatica@uni.edu.py" target="_blank" role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  </a>
+								</span>
+								<p>informatica@uni.edu.py</p>
+							</div><!-- /input-group -->
+						</div>
 					</div>
-				</a>
+				</div>
+				<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
+					<a href="http://www.meteorologia.gov.py" target="_blank">
+						<h3>DINAC</h3>
+					</a>
+					<div class="footer-center ">
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Centro+Meteorol%C3%B3gico+Nacional/@-25.2864383,-57.6553166,15z/data=!4m5!3m4!1s0x0:0x9626810dc66e423c!8m2!3d-25.2864383!4d-57.6553166" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
+								</span>
+								<p style="line-height: 11px;">Cnel Francisco López 1080 c/ De La Conquista - <span>Asunción, Paraguay</span></p>
+							</div><!-- /input-group -->
+						</div>
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+								</span>
+								<p>+595 21 4381000</p>
+							</div><!-- /input-group -->
+						</div>
+						<div>
+							<div class="input-group">
+								<span class="input-group-btn">
+									<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+								</span>
+								<p>+595 21 4381220</p>
+							</div><!-- /input-group -->
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 hidden-xs hidden-sm">
+					<ul>
+						<li><a href="http://www.meteorologia.gov.py/adm/uploads/Tasas.pdf" target="_blank" title="Tasas y tarifas establecidas para reportes del servicio meteorologico para el publico en general">Precios</a></li>
+						<li><a href="http://www.meteorologia.gov.py/serviciopublico.php" target="_blank" title="">Consultas</a></li>
+						<li><a href="mailto:director@meteorologia.gov.py" target="_blank" title="">Contacto</a></li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
-			<p id="descripcion">Esta página es producto de tareas en conjunto entre el Departamento de Informática de la Universidad Nacional de Itapúa y la Dirección de Meteorología e Hidrología de la DINAC, en el marco del convenio entre ambas partes.</p>
-		</div>
-		<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-			<a href="http://www.uni.edu.py" target="_blank">
-				<h3>UNI</h3>
-			</a>
-			<div class="footer-center inline">
-				<div>
-					<div class="input-group">
-						<span class="input-group-btn">
-							<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Universidad+Nacional+de+Itap%C3%BAa/@-27.3069477,-55.8873538,18z/data=!4m5!3m4!1s0x0:0xf31765db5e25c553!8m2!3d-27.3067583!4d-55.8874941?hl=es-419" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
-						</span>
-						<p style="line-height: 11px;">Abog. Lorenzo Zacarías 255 y Ruta 1 - <span>Encarnación, Paraguay</span></p>
-					</div><!-- /input-group -->
-				</div>
-				<div>
-					<div class="input-group">
-						<span class="input-group-btn">
-							<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
-						</span>
-						<p>+595 71 206990</p>
-					</div><!-- /input-group -->
-				</div>
-				<div>
-					<div class="input-group">
-						<span class="input-group-btn">
-							<a class="btn btn-xs btn-square" href="mailto:informatica@uni.edu.py" target="_blank" role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  </a>
-						</span>
-						<p>informatica@uni.edu.py</p>
-					</div><!-- /input-group -->
-				</div>
+			<div style="background-color: #111; text-align-last: center;">
+				<p style="margin-bottom: 0px;">Copyright © 2016 Universidad Nacional de Itapúa.</p>
 			</div>
-		</div>
-		<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-			<a href="http://www.meteorologia.gov.py" target="_blank">
-				<h3>DINAC</h3>
-			</a>
-			<div class="footer-center ">
-				<div>
-					<div class="input-group">
-						<span class="input-group-btn">
-							<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Centro+Meteorol%C3%B3gico+Nacional/@-25.2864383,-57.6553166,15z/data=!4m5!3m4!1s0x0:0x9626810dc66e423c!8m2!3d-25.2864383!4d-57.6553166" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
-						</span>
-						<p style="line-height: 11px;">Cnel Francisco López 1080 c/ De La Conquista - <span>Asunción, Paraguay</span></p>
-					</div><!-- /input-group -->
-				</div>
-				<div>
-					<div class="input-group">
-						<span class="input-group-btn">
-							<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
-						</span>
-						<p>+595 21 4381000</p>
-					</div><!-- /input-group -->
-				</div>
-				<div>
-					<div class="input-group">
-						<span class="input-group-btn">
-							<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
-						</span>
-						<p>+595 21 4381220</p>
-					</div><!-- /input-group -->
-				</div>
-				
-			</div>
-		</div>
-		<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 hidden-xs hidden-sm">
-			<ul>
-				<li><a href="http://www.meteorologia.gov.py/adm/uploads/Tasas.pdf" target="_blank" title="Tasas y tarifas establecidas para reportes del servicio meteorologico para el publico en general">Precios</a></li>
-				<li><a href="http://www.meteorologia.gov.py/serviciopublico.php" target="_blank" title="">Consultas</a></li>
-				<li><a href="mailto:director@meteorologia.gov.py" target="_blank" title="">Contacto</a></li>
-			</ul>
-		</div>
-	</div>
-	<div style="background-color: #111; text-align-last: center;">
-		<p style="margin-bottom: 0px;">Copyright © 2016 Universidad Nacional de Itapúa.</p>
-	</div>
-</footer>
+		</footer>
+				<script>
+			// Get the modal
+			var modal = document.getElementById('myModal');
+
+			// Get the image and insert it inside the modal - use its "alt" text as a caption
+			var modall = document.getElementById("overlay1");
+			var img = document.getElementById('myImg');
+			var modalImg = document.getElementById("img01");
+			var captionText = document.getElementById("caption");
+			modall.onclick = function(){
+				modal.style.display = "block";
+				modalImg.src = "img/doppler/video3.mp4";
+				captionText.innerHTML = img.alt;
+			}
+
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+				modal.style.display = "none";
+			}
+		</script>
 	</body>
 </html>
