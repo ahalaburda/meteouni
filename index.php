@@ -378,7 +378,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-right: 0px; padding-left: 0px;">
 					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-						<div id="pronostico" >
+						<div id= 	"pronostico" >
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-right: 0px; padding-left: 0px;">
 								<p id="encarnacion">Encarnación</p >
 								<?php
@@ -580,10 +580,12 @@
 						<div id="radar2" data-scrollreveal="enter top over 0.5s after 0.8s">
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="padding-right: 0px; padding-left: 0px;">
 								<div class="well3">
-									<div id="radar" class="hidden-xs hidden-sm">
+									<div id="radar" >
 										<div class="hovereffect">
-											<video id="myImg" width="350" height="296" alt="hola" autoplay loop>
-												<source src="img/doppler/video4.mp4" type="video/mp4" />
+											<video id="myImg" width="350" height="296" autoplay loop>
+												<source src="img/doppler/video4.webm"  type='video/webm; codecs="vp8, vorbis"' />
+												<source src="img/doppler/video4.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+												<source src="img/doppler/video4.ogv" type='video/ogg; codecs="theora, vorbis"' />
 												Your browser does not support the video tag.
 											</video>
 											<div id="overlay1" class="overlay">
@@ -592,20 +594,18 @@
 												</a>
 											</div>
 										</div>
-								
 										<div id="myModal" class="modal">
 											<span class="close">×</span>
-											<!-- <img class="modal-content" id="img01"> -->
 											<video class="modal-content" id="img01"  autoplay loop>
-												<source src="img/doppler/video3.mp4" type="video/mp4" />
+												<source src="img/doppler/video3.webm" type='video/webm; codecs="vp8, vorbis"' />
+												<source src="img/doppler/video3.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+												<source src="img/doppler/video3.ogv" type='video/ogg; codecs="theora, vorbis"' />
 												Your browser does not support the video tag.
 											</video>
-											<div id="caption"></div>
+											<div id="caption"> Últimas imágenes del radar meteorológico doppler</div>
 										</div>
 									</div>
-								
-
-									<div class="last-lecturas hidden-md hidden-lg">
+								<!-- <div class="last-lecturas hidden-md hidden-lg">
 										<div class="dato">
 											<a href="http://www.meteorologia.gov.py/radar/" title="doppler"> 
 												<h3>Radar Meteorologico</h3>
@@ -618,7 +618,7 @@
 												<img src="img/GOES.svg" alt="radar" >
 											</a>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
@@ -989,14 +989,15 @@
 			var modal = document.getElementById('myModal');
 
 			// Get the image and insert it inside the modal - use its "alt" text as a caption
-			var modall = document.getElementById("overlay1");
-			var img = document.getElementById('myImg');
-			var modalImg = document.getElementById("img01");
+			var btn = document.getElementById("overlay1");
+
+			// var img = document.getElementById('myImg');
+			// var modalImg = document.getElementById("img01");
 			var captionText = document.getElementById("caption");
-			modall.onclick = function(){
+			btn.onclick = function(){
 				modal.style.display = "block";
-				modalImg.src = "img/doppler/video3.mp4";
-				captionText.innerHTML = img.alt;
+				// modalImg.src = "img/doppler/video3.mp4";
+				// captionText.innerHTML = img.alt;
 			}
 
 			// Get the <span> element that closes the modal
@@ -1006,6 +1007,12 @@
 			span.onclick = function() {
 				modal.style.display = "none";
 			}
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+		    if (event.target == modal) {
+		        modal.style.display = "none";
+		    }
+		}
 		</script>
 	</body>
 </html>
