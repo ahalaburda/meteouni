@@ -2,6 +2,9 @@ body{
 	background-color: #0F2D40;
 	color: #EEE;
 }
+p { margin: 1.375rem 0; }
+
+                                                               
 /*############NAVBAR###############*/
     @font-face {
         font-family: 'ADAM.CG PRO';
@@ -97,7 +100,7 @@ body{
     }
 /*############VARIOS###############*/
     .well2 {
-        padding: 10px;
+        /*padding: 10px;*/
         margin-bottom: 20px;
          background-color: #296B73;
         border-radius: 0px;
@@ -106,11 +109,51 @@ body{
     .well3 {
         padding: 10px;
         margin-bottom: 20px;
-         background-color: #194759;
+        background-color: #194759;
         border-radius: 0px;
         color: #fff;
         font-family: 'Open Sans',sans-serif;
     }
+    .tooltip.left .tooltip-inner {
+        background-color: #194759;
+    }
+    .tooltip.left .tooltip-arrow {
+        border-left-color: #194759;
+    }    
+
+     #boton-pronostico{
+        font-family: 'Open Sans', sans-serif;
+        font-size: 80%;
+        transition: color 0.5s ease;
+        cursor: pointer;
+        color: #969696;
+    }
+    #boton-pronostico:hover{
+        color:#3E8C84;
+    }
+    #gbtn{
+        transition: color 0.5s ease;
+        cursor: pointer;
+        color: #7D868A;
+    }
+    #gbtn:hover{
+        color:#3E8C84;
+    }
+    
+    #graficoTemp, #graficoTempMaxMin,
+    #graficoVientoVel, #graficoVientoMax,
+    #graficoVientoDir, #graficoVientoPre,
+    #graficoPrecipitaciones {
+        background: white;
+        height: 381px;
+    }
+    #graficoTemp > div > div > a{
+        display: none !important;
+    }
+    #graficoVientoDir > div > div > a{
+        display: none !important;
+    }
+
 /*############PronosticoDinac######*/
     .dia{
     	font-size:18px; 
@@ -141,11 +184,13 @@ body{
     .pronostico{
     	font-family: 'Lato', sans-serif;
     	/*text-transform: uppercase;*/
+        font-size: 13px;
     	color: #ECF0F1;
     	text-align: center;
     	opacity: .8;
         height: 107px;
     }
+    
     #actualizado{
     	font-family: 'Open Sans', sans-serif;
     	color:#e7e7e7;
@@ -158,6 +203,7 @@ body{
     	color:#e7e7e7;
     	font-size: 24px;
     	margin: 1px;
+        font-weight: bold;
     }
 
     #titulo2{
@@ -170,6 +216,8 @@ body{
         font-size: 20px;
         font-family: 'Open Sans', sans-serif;
         color: #FFF;
+        margin-top: 0;
+        margin-bottom: 1.39em;
     }
     .pronostico_img1 img{
         position: absolute;
@@ -192,6 +240,9 @@ body{
         left: -14px;
     }
 /*############LECTURAS#############*/
+    header{
+        font-family: 'Lato',sans-serif;
+    }
     .iconos {
         float: left;
         width: 60px;
@@ -225,6 +276,7 @@ body{
         font-size: 15px;
         font-family: 'Open Sans', sans-serif;
         color: white;
+        font-weight: bold;
     }
     .dato img{
         height: 55px;
@@ -237,8 +289,8 @@ body{
         position: relative;
         font-family: 'Open Sans',sans-serif;
         text-decoration: none !important;
-        padding-top: 21px;
-        padding-bottom: 21px;
+        padding-top: 29px;
+        padding-bottom: 30px;
     }
     .last-lecturas div {
         display: inline-block;
@@ -277,7 +329,8 @@ body{
         /*padding-top: 50px*/
     }
     #imagen-footer{
-        padding: 20%;
+        padding-top: 20%;
+        padding-left: 20%;
         display: flex;
         text-align: center
     }
@@ -287,8 +340,7 @@ body{
         margin-right: 5px !important;
     }
     footer img{
-        height: 60px;
-        width: 100%
+        height: 5em;
     }
     footer #descripcion{
         margin: 7% 0;
@@ -322,6 +374,9 @@ body{
         line-height: 16px;
         margin-bottom: 16px;
     }
+    footer p,a {
+        color: #525C5F;
+    }
     footer p>span{
         font-weight: bold;
     }
@@ -348,6 +403,11 @@ body{
         margin: 0.5% 0; 
     }
 
+    @media (max-width: 992px) {
+        .pequeño{
+            padding: 0 9%;
+        }
+    }
 /*##########################flip#############################*/
     .flip {
         -webkit-animation-delay: 5s; 
@@ -392,13 +452,29 @@ body{
         width: 100%;
         position: initial;
     }
-    /*////////////*/
-    #boton-pronostico{
-        font-family: 'Open Sans', sans-serif;
-        font-size: 80%;
-        transition: color 0.5s ease;
-    }
-    #boton-pronostico:hover{
-        color:#3E8C84;
-    }
+/*//////////////////// GRAFICOS ARMCHART//////////*/
 
+.amcharts-graph-g1{
+ stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 500%;
+
+  -webkit-animation: am-draw 40s;
+  animation: am-draw 40s;
+}
+@-webkit-keyframes am-draw {
+    0% {
+        stroke-dashoffset: 500%;
+    }
+    100% {
+        stroke-dashoffset: 0%;
+    }
+}
+@keyframes am-draw {
+    0% {
+        stroke-dashoffset: 500%;
+    }
+    100% {
+        stroke-dashoffset: 0%;
+    }
+}

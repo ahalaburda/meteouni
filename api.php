@@ -37,12 +37,12 @@ function getFechaHora(){
 //--------------------------------------------------------------------------
 function getValores() {
 
- /*   $file = fopen("class/getValores.json", "r") or exit("Unable to open file!");    
+    $file = fopen("class/getValores.json", "r") or exit("Unable to open file!");    
     while(!feof($file)){
 	echo fgets($file);
     }
     fclose($file);
-*/
+
     $m = new Meteo();
 
     $arrFechaHora = $m->getFechaHoraUltimaLectura();

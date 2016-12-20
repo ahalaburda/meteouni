@@ -1,4 +1,5 @@
-/* Author:
+/*  Author:Leonel Gamarra y Adrian Halaburda
+    Ultima modificacion
  */
 
 var chart;
@@ -15,69 +16,72 @@ var fechaMesAnterior;
 var data; //datos de la consulta
 var desde; //fecha desde
 var hasta; //fecha hasta
+
+
 $(document).ready(function () {
     $("#grafico1").hide();
+    $("#grafico2").hide();
+    $("#grafico3").hide();
+    $("#grafico4").hide();
 
     $('.flip').click(function(){
         $(this).find('.card').toggleClass('flipped');
     });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 });
 
-$(document).ready(function() {
-    $("#botonera").click(function(){
-        $('#grafico1').fadeToggle();
-        if($('#gbtn').hasClass('glyphicon glyphicon-plus')){
-            $('#gbtn').removeClass('glyphicon glyphicon-plus');
-            $('#gbtn').addClass('glyphicon glyphicon-chevron-up');
-        }else{
-            $('#gbtn').removeClass('glyphicon glyphicon-chevron-up');
-            $('#gbtn').addClass('glyphicon glyphicon-plus');
-        }
-    });
-});
+
 
 $(document).ready(function () {
     
-    hasta = getFechaActual();
-    desde = getFechaActualResta(30);
+    // hasta = getFechaActual();
+    // desde = getFechaActualResta(30);
+    desde = "2015-01-01";
+    hasta = "2015-01-01";
+   
     //carga los datos iniciales para el index
-    if ('index.php' == returnDocument() || '' == returnDocument() || '#prettyPhoto' == returnDocument()) {
+    if ('index.php' == returnDocument() || '' == returnDocument() ) {
+    // if ('index.php' == returnDocument() || '' == returnDocument() || '#prettyPhoto' == returnDocument()) {
         tabs();//setea los tabs
-        pronostico(); //edita el pronostico
+        // pronostico(); //edita el pronostico
         setData(); //setea los datos iniciales
         slides();  //carga los slides
-        setRadar();
+        // setRadar();
         
         //timer para recargar los graficos
         setInterval(setData, 60000);
         //timers para el radar doppler
-        setInterval(setRadar, 1000); //hace que se muestren en secuencia  
-        setInterval(reloadRadar, 60000); //actualiza las imagenes del radar cada 100000 milisegundos
+        // setInterval(setRadar, 1000); //hace que se muestren en secuencia  
+        // setInterval(reloadRadar, 60000); //actualiza las imagenes del radar cada 100000 milisegundos
 
-        $("a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'fast', slideshow:10000, hideflash:true});
+        // $("a[rel^='prettyPhoto']").prettyPhoto({animation_speed:'fast', slideshow:10000, hideflash:true});
 
     }
+    //#################################################       REPORTES.PHP        #########################################################
+        //carga los datos iniciales para el reporte
+        if ('reportes.php' == returnDocument()) {
+            //datapickers
+            calendario("#txtDesde");
+            calendario("#txtHasta");
 
-    //carga los datos iniciales para el reporte
-    if ('reportes.php' == returnDocument()) {
-        //datapickers
-        calendario("#txtDesde");
-        calendario("#txtHasta");
+            //carga los eventos del menu
+            menu();
 
-        //carga los eventos del menu
-        menu();
-
-        $("#txtHasta").val(hasta);
-        $("#txtDesde").val(desde);
+            $("#txtHasta").val(hasta);
+            $("#txtDesde").val(desde);
 
 
-        //carga la opcion por defecto
-        loadGraficoLinea('tempAire', desde, hasta, 'grafico');
-        tipo = 'tempAire';
-        menuCssOn('li1');
-        fechaUpdate(); //controla los cambios de fecha
-    }
+            //carga la opcion por defecto
+            graficoLinea('tempAire', desde, hasta, 'grafico');
+            tipo = 'tempAire';
+            menuCssOn('li1');
+            fechaUpdate(); //controla los cambios de fecha
+        }
 });
+
 
 function fechaUpdate(){
     $('#txtDesde').change(function() {
@@ -98,95 +102,29 @@ function returnDocument() {
 }
 
 /**
- * Carga las imagenes del radar
- */
-function setRadar() {
-
-    if (idSenal == 10) {
-        idSenal++;
-        $('#senhal10').hide();
-        $('#senhal11').show();
-        $('#senhal10-modal').hide();
-        $('#senhal11-modal').show();
-    } else if (idSenal == 11) {
-        idSenal++;
-        $('#senhal11').hide();
-        $('#senhal12').show();
-        $('#senhal11-modal').hide();
-        $('#senhal12-modal').show();
-    } else if (idSenal == 12) {
-        idSenal++;
-        $('#senhal12').hide();
-        $('#senhal13').show();
-        $('#senhal12-modal').hide();
-        $('#senhal13-modal').show();
-    } else if (idSenal == 13) {
-        idSenal++;
-        $('#senhal13').hide();
-        $('#senhal14').show();
-        $('#senhal13-modal').hide();
-        $('#senhal14-modal').show();
-    } else if (idSenal == 14) {
-        idSenal++;
-        $('#senhal14').hide();
-        $('#senhal15').show();
-        $('#senhal14-modal').hide();
-        $('#senhal15-modal').show();
-    } else if (idSenal == 15) {
-        idSenal = 10;
-        $('#senhal15').hide();
-        $('#senhal10').show();
-        $('#senhal15-modal').hide();
-        $('#senhal10-modal').show();
-    }
-
-}
-
-/**
- * Recarga las imagenes del radar doppler
- */
-function reloadRadar() {
-
-    var d = new Date();
-    $("#senhal10").attr("src", "../img/doppler/l10.jpg?" + d.getTime());
-    $("#senhal11").attr("src", "../img/doppler/l11.jpg?" + d.getTime());
-    $("#senhal12").attr("src", "../img/doppler/l12.jpg?" + d.getTime());
-    $("#senhal13").attr("src", "../img/doppler/l13.jpg?" + d.getTime());
-    $("#senhal14").attr("src", "../img/doppler/l14.jpg?" + d.getTime());
-    $("#senhal15").attr("src", "../img/doppler/l15.jpg?" + d.getTime());
-    
-    $("#senhal10-modal").attr("src", "../img/doppler/l10.jpg?" + d.getTime());
-    $("#senhal11-modal").attr("src", "../img/doppler/l11.jpg?" + d.getTime());
-    $("#senhal12-modal").attr("src", "../img/doppler/l12.jpg?" + d.getTime());
-    $("#senhal13-modal").attr("src", "../img/doppler/l13.jpg?" + d.getTime());
-    $("#senhal14-modal").attr("src", "../img/doppler/l14.jpg?" + d.getTime());
-    $("#senhal15-modal").attr("src", "../img/doppler/l15.jpg?" + d.getTime());
-}
-
-/**
  * Carga los tabs y los graficos al cambiar de tabs
  */
 function tabs() {
-    $("#tabsTemperatura").tabs();
-    $("#tabsVientoVel").tabs();
-    $("#tabsVientoDir").tabs();
-    $("#tabsPrecipitaciones").tabs();
+    // $("#tabsTemperatura").tabs();
+    // $("#tabsVientoVel").tabs();
+    // $("#tabsVientoDir").tabs();
+    // $("#tabsPrecipitaciones").tabs();
 
     //temperatura
 
     $("#aTabTemp").click(function () {
-        loadGraficoLinea('tempAire', desde, hasta, 'graficoTemp');
+        graficoLinea('tempAire', desde, hasta,'graficoTemp');
         $("#graficoTempMaxMin").html('<img src="img/cargando.gif">');
     });
     $("#aTabTempMaxMin").click(function () {
-        loadGraficoTempMinMax(desde, hasta);
+        loadGraficoTempMinMax('2015-01-01','2015-02-01');
         $("#graficoTemp").html('<img src="img/cargando.gif">');
     });
 
     //velocidad viento
 
     $("#aTabVientoVel").click(function () {
-        loadGraficoLinea('vientoInt', desde, hasta, 'graficoVientoVel');
+        graficoLinea('vientoInt', desde, hasta, 'graficoVientoVel');
         $("#graficoVientoMax").html('<img src="img/cargando.gif">');
     });
 
@@ -198,7 +136,7 @@ function tabs() {
     //direccion del viento
 
     $("#aTabVientDir").click(function () {
-        loadGraficoLinea('vientoDir', desde, hasta, 'graficoVientoDir');
+        graficoLinea('vientoDir', desde, hasta, 'graficoVientoDir');
         $("#graficoVientoPre").html('<img src="img/cargando.gif">');
     });
 
@@ -215,112 +153,123 @@ function tabs() {
 /**
  * Carga los slides y los graficos
  */
+
 function slides() {
     $("#btnGrafTemp").click(function () {
-        if ($("#slideTemp").is(":hidden")) {
-            $("#slideTemp").slideDown(600);
+        if ($("#grafico1").css('display') == 'none') {
+            $("#grafico1").fadeIn('slow');
             setTimeout(function () {
-                loadGraficoLinea('tempAire', desde, hasta, 'graficoTemp');
-                loadGraficoTempMinMax(desde, hasta);
+                graficoLinea('tempAire', desde, hasta,'graficoTemp');
+                loadGraficoTempMinMax('2015-01-01','2015-02-01');
             }, 600);
 
-            $("#slideVientoVel").slideUp(600);
-            $("#slideVientoDir").slideUp(600);
-            $("#slidePrecipitaciones").slideUp(600);
-            $('#btnGrafTemp').html('-');
-            $('#btnGrafVientoVel').html('+');
-            $('#btnGrafVientoDir').html('+');
-            $('#btnGrafPrecipitaciones').html('+');
+            $("#grafico2").fadeOut(600);
+            $("#grafico3").fadeOut(600);
+            $("#grafico4").fadeOut(600);
+
+            $('#gbtn1').removeClass('glyphicon glyphicon-plus');
+            $('#gbtn1').addClass('glyphicon glyphicon-chevron-up');
+
+            $('#gbtn2').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn2').addClass('glyphicon glyphicon-plus');
+            $('#gbtn3').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn3').addClass('glyphicon glyphicon-plus');
+            $('#gbtn4').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn4').addClass('glyphicon glyphicon-plus');
 
         } else {
-            $("#slideTemp").slideUp(600)
-            $('#btnGrafTemp').html('+');
+            $("#grafico1").fadeOut(600);
+            $('#gbtn1').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn1').addClass('glyphicon glyphicon-plus');
 
         }
     });
 
     $("#btnGrafVientoVel").click(function () {
-        if ($("#slideVientoVel").is(":hidden")) {
-            $("#slideVientoVel").slideDown(600);
+        if ($("#grafico2").css('display') == 'none') {
+            $("#grafico2").fadeIn('slow');
             setTimeout(function () {
-                loadGraficoLinea('vientoInt', desde, hasta, 'graficoVientoVel');
-                loadGraficoVientoMax(hasta, hasta, 'graficoVientoMax'); //{hasta} => fecha de hoy
+                graficoLinea('vientoInt',desde, hasta, 'graficoVientoVel');
+                loadGraficoVientoMax(desde, hasta, 'graficoVientoMax'); //{hasta} => fecha de hoy
             }, 600);
-            $("#slideTemp").slideUp(600);
-            $("#slideVientoDir").slideUp(600);
-            $("#slidePrecipitaciones").slideUp(600);
-            $('#btnGrafVientoVel').html('-');
-            $('#btnGrafTemp').html('+');
-            $('#btnGrafVientoDir').html('+');
-            $('#btnGrafPrecipitaciones').html('+');
+            $("#grafico1").fadeOut(600);
+            $("#grafico3").fadeOut(600);
+            $("#grafico4").fadeOut(600);
+
+            $('#gbtn2').removeClass('glyphicon glyphicon-plus');
+            $('#gbtn2').addClass('glyphicon glyphicon-chevron-up');
+
+            $('#gbtn1').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn1').addClass('glyphicon glyphicon-plus');
+            $('#gbtn3').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn3').addClass('glyphicon glyphicon-plus');
+            $('#gbtn4').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn4').addClass('glyphicon glyphicon-plus');
 
         } else {
-            $("#slideVientoVel").slideUp(600);
-            $('#btnGrafVientoVel').html('+');
+            $("#grafico2").fadeOut(600);
+            $('#gbtn2').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn2').addClass('glyphicon glyphicon-plus');
         }
     });
 
     $("#btnGrafVientoDir").click(function () {
-        if ($("#slideVientoDir").is(":hidden")) {
-            $("#slideVientoDir").slideDown(600);
+        if ($("#grafico3").css('display') == 'none') {
+            $("#grafico3").fadeIn('slow');
             setTimeout(function () {
-                loadGraficoLinea('vientoDir', desde, hasta, 'graficoVientoDir');
+                graficoLinea('vientoDir', desde, hasta, 'graficoVientoDir');
                 loadGraficoVientoPre(desde, hasta, 'graficoVientoPre');
             }, 600);
-            $("#slideTemp").slideUp(600);
-            $("#slideVientoVel").slideUp(600);
-            $("#slidePrecipitaciones").slideUp(600);
-            $('#btnGrafVientoDir').html('-');
-            $('#btnGrafTemp').html('+');
-            $('#btnGrafVientoVel').html('+');
-            $('#btnGrafPrecipitaciones').html('+');
+            $("#grafico1").fadeOut(600);
+            $("#grafico2").fadeOut(600);
+            $("#grafico4").fadeOut(600);
+
+            $('#gbtn3').removeClass('glyphicon glyphicon-plus');
+            $('#gbtn3').addClass('glyphicon glyphicon-chevron-up');
+
+            $('#gbtn1').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn1').addClass('glyphicon glyphicon-plus');
+            $('#gbtn2').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn2').addClass('glyphicon glyphicon-plus');
+            $('#gbtn4').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn4').addClass('glyphicon glyphicon-plus');
 
         } else {
-            $("#slideVientoDir").slideUp(600);
-            $('#btnGrafVientoDir').html('+');
+            $("#grafico3").fadeOut(600);
+            $('#gbtn3').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn3').addClass('glyphicon glyphicon-plus');
         }
     });
 
     $("#btnGrafPrecipitaciones").click(function () {
-        if ($("#slidePrecipitaciones").is(":hidden")) {
-            $("#slidePrecipitaciones").slideDown(600);
+        if ($("#grafico4").css('display') == 'none') {
+            $("#grafico4").fadeIn('slow');
             setTimeout(function () {
-                loadGraficoLinea('precipitacion', desde, hasta, 'graficoPrecipitaciones');
+                graficoLinea('precipitacion', desde, hasta, 'graficoPrecipitaciones');
             }, 600);
-            $("#slideTemp").slideUp(600);
-            $("#slideVientoVel").slideUp(600);
-            $("#slideVientoDir").slideUp(600);
-            $('#btnGrafPrecipitaciones').html('-');
-            $('#btnGrafTemp').html('+');
-            $('#btnGrafVientoVel').html('+');
-            $('#btnGrafVientoDir').html('+');
+            $("#grafico1").fadeOut(600);
+            $("#grafico2").fadeOut(600);
+            $("#grafico3").fadeOut(600);
+
+            $('#gbtn4').removeClass('glyphicon glyphicon-plus');
+            $('#gbtn4').addClass('glyphicon glyphicon-chevron-up');
+
+            $('#gbtn1').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn1').addClass('glyphicon glyphicon-plus');
+            $('#gbtn2').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn2').addClass('glyphicon glyphicon-plus');
+            $('#gbtn3').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn3').addClass('glyphicon glyphicon-plus');
 
         } else {
-            $("#slidePrecipitaciones").slideUp(600);
-            $('#btnGrafPrecipitaciones').html('+');
+            $("#grafico4").fadeOut(600);
+            $('#gbtn4').removeClass('glyphicon glyphicon-chevron-up');
+            $('#gbtn4').addClass('glyphicon glyphicon-plus');
         }
     });
 
-
 }
 
-
-/**
- * Edita el estilo del pronostico
- */
-function pronostico() {
-    var hoy = $("aside table table tr:nth-child(3) td:nth-child(1) span");
-    var manhana = $("aside table table tr:nth-child(3) td:nth-child(3) span");
-    var pasado = $("aside table table tr:nth-child(3) td:nth-child(5) span");
-
-    $("aside table table tr:nth-child(2) td:nth-child(1)").attr("title", hoy.html());
-    $("aside table table tr:nth-child(2) td:nth-child(3)").attr("title", manhana.html());
-    $("aside table table tr:nth-child(2) td:nth-child(5)").attr("title", pasado.html());
-
-    $("aside table table tbody tr:nth-child(3)").remove();
-
-
-}
 
 /**
  * Setea los datos meteorologicos
@@ -328,7 +277,8 @@ function pronostico() {
 function setData() {
     $.ajax({
         // url:'api.php?f=getValores',
-        url:'/class/getValores.json',
+        // url:'http://meteo.uni.edu.py/class/getValores.json',
+        url:'class/getValores.json',
         data:"",
         type:"GET",
         async:false,
@@ -393,6 +343,7 @@ function setData() {
 
         }
     });
+
 }
 
 
@@ -469,6 +420,7 @@ function vientoPolar(grado) {
         vardire = 'S/D';
     }
     return vardire;
+
 }
 
 
@@ -481,7 +433,6 @@ function vientoPolar(grado) {
 function loadData(tipo, desde, hasta) {
     var meteo;
 
-
     $.ajax({
         url:"api.php?f=getMeteoData&tipo=" + tipo + "&desde=" + desde + "&hasta=" + hasta,        
         type:"GET",
@@ -493,108 +444,7 @@ function loadData(tipo, desde, hasta) {
     });
     data = meteo;
     return meteo;
-}
 
-/**
- * Carga el grafico de linea de acuerdo al tipo
- * @param tipo Tipo de grafico
- * @param desde fecha desde donde se desea obtener el grafico
- * @param hasta fecha hasta donde se desea obtener el grafico
- * @param grafico componente html donde se cargara el grafico
- */
-function loadGraficoLinea(tipo, desde, hasta, grafico) {
-
-    var medida = getMedida(tipo);
-
-
-    chartData = new Array();
-    var datos = loadData(tipo, desde, hasta);
-    //Para cada dato...
-    for (var i = 0; i < datos.length; i++) {
-        var meteo = datos[i];
-
-        var arrFecha = meteo.fecha.split('-');
-        var anho = arrFecha[0];
-        var mes = arrFecha[1] - 1;
-        var dia = arrFecha[2];
-
-        var arrHora = meteo.hora.split(':');
-        var hora = arrHora[0];
-        var min = arrHora[1];
-        var seg = arrHora[2];
-
-        var date = new Date(anho, mes, dia, hora, min, seg);
-
-        if (tipo == 'vientoInt' || tipo == 'vientoMax') { //pasa a km/h las velocidades del viento
-            //Carga el dato al Grafico
-            chartData.push({
-                date:date,
-                visits:roundNumber(meteo.data * 3.6, 1)
-            });
-        }
-        else {
-            //Carga el dato al Grafico
-            chartData.push({
-                date:date,
-                visits:meteo.data
-            });
-        }
-    }
-
-    // SERIAL CHART
-    chart = new AmCharts.AmSerialChart();
-    chart.pathToImages = "img/amcharts/";
-    chart.zoomOutButton = {
-        backgroundColor:'#000000',
-        backgroundAlpha:0.15};
-
-    chart.dataProvider = chartData;
-    chart.categoryField = "date";
-
-    // data updated event will be fired when chart is first displayed,
-    // also when data will be updated. We'll use it to set some
-    // initial zoom
-    chart.addListener("dataUpdated", zoomChart);
-
-    // AXES
-    // Category
-    var categoryAxis = chart.categoryAxis;
-    categoryAxis.parseDates = true; // in order char to understand dates, we should set parseDates to true
-    categoryAxis.minPeriod = "mm"; // as we have data with minute interval, we have to set "mm" here.
-    categoryAxis.gridAlpha = 0.07;
-    categoryAxis.axisColor = "#DADADA";
-
-    // Value
-    var valueAxis = new AmCharts.ValueAxis();
-    valueAxis.gridAlpha = 0.07;
-    valueAxis.title = "Datos Obtenidos";
-    chart.addValueAxis(valueAxis);
-
-    // GRAPH
-    var graph = new AmCharts.AmGraph();
-    graph.type = "line"; // try to change it to "column"
-    graph.title = "red line";
-    graph.valueField = "visits";
-    graph.lineAlpha = 1;
-    graph.lineColor = "#d9cf73";
-    graph.fillAlphas = 0.3; // setting fillAlphas to > 0 value makes it area graph
-    graph.balloonText = "[[value]] " + medida;
-    chart.addGraph(graph);
-
-    // CURSOR
-    var chartCursor = new AmCharts.ChartCursor();
-    chartCursor.cursorPosition = "mouse";
-    chartCursor.categoryBalloonDateFormat = "JJ:NN, DD MMMM";
-    chart.addChartCursor(chartCursor);
-
-    // SCROLLBAR
-    var chartScrollbar = new AmCharts.ChartScrollbar();
-
-    chart.addChartScrollbar(chartScrollbar);
-
-    // WRITE
-    $("#" + grafico).empty();
-    chart.write(grafico);
 }
 
 
@@ -626,7 +476,6 @@ function loadGraficoTempMinMax(desde, hasta) {
     for (var i = 0; i < datos.length; i++) {
         var dato = datos[i];
 
-
         var arrFecha = dato.fecha.split('-');
         var anho = arrFecha[0];
         var mes = arrFecha[1] - 1;
@@ -657,71 +506,99 @@ function loadGraficoTempMinMax(desde, hasta) {
 
     }
 
+
     // SERIAL CHART
-    chartMM = new AmCharts.AmSerialChart();
-    chartMM.pathToImages = "img/amcharts/";
-    chartMM.zoomOutButton = {
-        backgroundColor:'#000000',
-        backgroundAlpha:0.15};
+    var chartMM = AmCharts.makeChart( "graficoTempMaxMin" , {
+        "type": "serial",
+        "dataProvider": chartDataMM,
+        "fontFamily" : "Lato",
+        // "legend": {
+        //     "useGraphSettings": true
+        // },
+        // AXES
+        // Category
+        "categoryField": "date",
+        "categoryAxis": {
+            "gridPosition": "start",
+            "parseDates": true,
+            "minPeriod" : "mm",
+            "axisAlpha": 0,
+            "fillAlpha": 0.09,
+            "fillColor": "#000000",
+            "gridAlpha": 0,
+        },
 
-    chartMM.dataProvider = chartDataMM;
-    chartMM.categoryField = "date";
+        // Value
+        "valueAxes": [{
+            "integersOnly": true,
+            "axisAlpha": 0.5,
+            "dashLength": 5,
+            "title": "Datos obtenidos"
+        }],
+        
+        "startDuration": 0.5,
 
+        // GRAPH MIN
+        "graphs": [{
+            "id": "g1",
+            "title": "Temperatura Minima",
+            "valueField": "minima",
+            "balloonText": "Min [[value]] " + medida,
+            "lineColor": "#3399D9",
+            "bullet": "round",
+            "fillAlphas": 0,
+
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "hideBulletsCount": 50,
+
+                "useLineColorForBulletBorder": true,
+
+
+            },{
+            "id": "g2",
+            "title": "Temperatura Maxima",
+            "valueField": "maxima",
+            "balloonText": "Max [[value]] " + medida,
+            "lineColor": "#D94112",
+            "bullet": "round",
+            "fillAlphas": 0,
+                            "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "hideBulletsCount": 50,
+
+                "useLineColorForBulletBorder": true,
+
+
+        }],
+        // CURSOR
+        "chartCursor": {
+            "limitToGraph":"g1",
+            "cursorPosition" : "mouse",
+            "cursorAlpha": 0.3,
+            "categoryBalloonDateFormat": "JJ:NN, DD MMMM"
+        },
+        //SCROLLBAR
+        "chartScrollbar": {
+            "autoGridCount": true,
+            "graph": "g1",
+            "scrollbarHeight": 40
+        },
+        //ZOOM MOUSE
+         "mouseWheelZoomEnabled": true
+    });
+
+    chartMM.dayNames = ['Do','Lu','Ma','Mi','Ju','Vi','Sa'];
+    chartMM.shortDayNames = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
+    chartMM.monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    chartMM.shortMonthNames = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    
     // data updated event will be fired when chart is first displayed,
     // also when data will be updated. We'll use it to set some
     // initial zoom
     chartMM.addListener("dataUpdated", zoomChartMM);
 
-    // AXES
-    // Category
-    var categoryAxis = chartMM.categoryAxis;
-    categoryAxis.parseDates = true; // in order char to understand dates, we should set parseDates to true
-    categoryAxis.minPeriod = "mm"; // as we have data with minute interval, we have to set "mm" here.
-    categoryAxis.gridAlpha = 0.07;
-    categoryAxis.axisColor = "#DADADA";
 
-    // Value
-    var valueAxis = new AmCharts.ValueAxis();
-    valueAxis.gridAlpha = 0.07;
-    valueAxis.title = "Datos Obtenidos";
-    chartMM.addValueAxis(valueAxis);
-
-    // GRAPH
-    var graphMin = new AmCharts.AmGraph();
-    graphMin.type = "line"; // try to change it to "column"
-    graphMin.title = "red line";
-    graphMin.valueField = "minima";
-    graphMin.lineAlpha = 1;
-    graphMin.lineColor = "#2086D9";
-    graphMin.fillAlphas = 0.3; // setting fillAlphas to > 0 value makes it area graph
-    graphMin.balloonText = "[[value]] " + medida;
-    chartMM.addGraph(graphMin);
-
-    var graphMax = new AmCharts.AmGraph();
-    graphMax.type = "line"; // try to change it to "column"
-    graphMax.title = "red line";
-    graphMax.valueField = "maxima";
-    graphMax.lineAlpha = 1;
-    graphMax.lineColor = "#D94112";
-    graphMax.fillAlphas = 0.3; // setting fillAlphas to > 0 value makes it area graph
-    graphMax.balloonText = "[[value]] " + medida;
-    chartMM.addGraph(graphMax);
-
-
-    // CURSOR
-    var chartCursor = new AmCharts.ChartCursor();
-    chartCursor.cursorPosition = "mouse";
-    chartCursor.categoryBalloonDateFormat = "JJ:NN, DD MMMM";
-    chartMM.addChartCursor(chartCursor);
-
-    // SCROLLBAR
-    var chartScrollbar = new AmCharts.ChartScrollbar();
-
-    chartMM.addChartScrollbar(chartScrollbar);
-
-    // WRITE
-    $("#graficoTempMaxMin").empty();
-    chartMM.write("graficoTempMaxMin");
 }
 
 /**
@@ -734,7 +611,6 @@ function loadGraficoVientoPre(desde, hasta, grafico) {
 
     var datos = loadData('vientoPreDia', desde, hasta);
     var dato = datos[0];
-
 
     loadGraficoPolar(grafico, 'lecturas', dato.n, dato.nne, dato.ne, dato.ene, dato.e, dato.ese,
         dato.se, dato.sse, dato.s, dato.ssw, dato.sw, dato.wsw, dato.w,
@@ -834,7 +710,7 @@ function loadGraficoVientoMax(desde, hasta, grafico) {
  * Carga el grafico polar
  */
 function loadGraficoPolar(grafico, medida, n, nne, ne, ene, e, ese, se, sse, s, ssw, sw, wsw, w, wnw, nw, nnw) {
-    var chart;
+    var cart;
     chartData = new Array();
     var chartData = [
         {
@@ -904,36 +780,32 @@ function loadGraficoPolar(grafico, medida, n, nne, ne, ene, e, ese, se, sse, s, 
     ];
 
     // RADAR CHART
-    chart = new AmCharts.AmRadarChart();
-    chart.dataProvider = chartData;
-    chart.categoryField = "direction";
-    chart.startDuration = 1;
-
-
-    // VALUE AXIS
-    var valueAxis = new AmCharts.ValueAxis();
-    valueAxis.gridType = "circles";
-    valueAxis.fillAlpha = 0.05;
-    valueAxis.fillColor = "#000000"
-    valueAxis.axisAlpha = 0.2;
-    valueAxis.gridAlpha = 0;
-    valueAxis.fontWeight = "bold"
-    valueAxis.minimum = 0;
-    chart.addValueAxis(valueAxis);
-
-    // GRAPH
-    var graph = new AmCharts.AmGraph();
-    graph.lineColor = "#FFCC00"
-    graph.fillAlphas = 0.4;
-    graph.bullet = "round"
-    graph.valueField = "value"
-    graph.balloonText = "[[category]]: [[value]] " + medida
-    chart.addGraph(graph);
-
-
-    // WRITE
-    $("#" + grafico).empty();
-    chart.write(grafico);
+    var chart = AmCharts.makeChart( grafico , {
+        "type": "radar",
+        "dataProvider": chartData,
+        "fontFamily" : "Lato",
+        "categoryField": "direction",
+        "startDuration" : 1,
+         "addClassNames": true,
+        // VALUE AXIS
+        "valueAxes": [{
+            "gridType" : "circles",
+            "minimum": 0,
+            "axisAlpha": 0.2,
+            "dashLength": 3,
+            "gridAlpha": 0,
+            "fillAlpha" : 0.05,
+            "fillColor" : "#000000"
+        }],
+        // GRAPH
+        "graphs": [{
+            "valueField": "value",
+            "lineColor" : "#FFCC00",
+            "fillAlphas" : 0.4,
+            "bullet" : "round",
+            "balloonText" : "[[category]]: [[value]] " + medida
+        }]
+   });
 }
 
 
@@ -989,6 +861,7 @@ function getMedida(tipo) {
             break;
     }
     return medida;
+
 }
 
 
@@ -1001,7 +874,7 @@ function calendario(inputText) {
         dayNames:["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado"],
         dayNamesMin:["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
         dayNamesShort:["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
-        monthNames:["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre"],
+        monthNames:["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
         monthNamesShort:["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"],
         nextText:"Siguiente",
         prevText:"Anterior",
@@ -1012,67 +885,67 @@ function calendario(inputText) {
         buttonImage:"img/calendario.jpeg",
         buttonImageOnly:true
     });
+
 }
 
 /**
  * Carga los eventos de los menus
  */
 function menu() {
-
     $("#tempAire").click(function () {
         menuCssOn('li1');
-        loadGraficoLinea('tempAire', desde, hasta, 'grafico');
+        graficoLinea('tempAire', desde, hasta, 'grafico');
         tipo = 'tempAire';
     });
     $("#tempMin").click(function () {
         menuCssOn('li2');
-        loadGraficoLinea('tempMin', desde, hasta, 'grafico');
+        graficoLinea('tempMin', desde, hasta, 'grafico');
         tipo = 'tempMin';
     });
     $("#tempMax").click(function () {
         menuCssOn('li3');
-        loadGraficoLinea('tempMax', desde, hasta, 'grafico');
+        graficoLinea('tempMax', desde, hasta, 'grafico');
         tipo = 'tempMax';
     });
     $("#tempSuelos").click(function () {
         menuCssOn('li4');
-        loadGraficoLinea('tempSuelo', desde, hasta, 'grafico');
+        graficoLinea('tempSuelo', desde, hasta, 'grafico');
         tipo = 'tempSuelo';
     });
     $("#humedad").click(function () {
         menuCssOn('li5');
-        loadGraficoLinea('humedad', desde, hasta, 'grafico');
+        graficoLinea('humedad', desde, hasta, 'grafico');
         tipo = 'humedad';
     });
     $("#vientoDir").click(function () {
         menuCssOn('li6');
-        loadGraficoLinea('vientoDir', desde, hasta, 'grafico');
+        graficoLinea('vientoDir', desde, hasta, 'grafico');
         tipo = 'vientoDir';
     });
     $("#vientoInt").click(function () {
         menuCssOn('li7');
-        loadGraficoLinea('vientoInt', desde, hasta, 'grafico');
+        graficoLinea('vientoInt', desde, hasta, 'grafico');
         tipo = 'vientoInt';
     });
 
     $("#presion").click(function () {
         menuCssOn('li8');
-        loadGraficoLinea('presionAtm', desde, hasta, 'grafico');
+        graficoLinea('presionAtm', desde, hasta, 'grafico');
         tipo = 'presionAtm';
     });
     $("#precipitacion").click(function () {
         menuCssOn('li9');
-        loadGraficoLinea('precipitacion', desde, hasta, 'grafico');
+        graficoLinea('precipitacion', desde, hasta, 'grafico');
         tipo = 'precipitacion';
     });
     $("#vientoMax").click(function () {
         menuCssOn('li10');
-        loadGraficoLinea('vientoMax', desde, hasta, 'grafico');
+        graficoLinea('vientoMax', desde, hasta, 'grafico');
         tipo = 'vientoMax';
     });
     $("#radiacion").click(function () {
         menuCssOn('li11');
-        loadGraficoLinea('radiacion', desde, hasta, 'grafico');
+        graficoLinea('radiacion', desde, hasta, 'grafico');
         tipo = 'radiacion';
     });
 
@@ -1098,11 +971,10 @@ function menuCssOff() {
  * Filtra los los resultados de la consulta de acuerdo a las fechas dadas
  */
 function filtrar() {
-
     if (tipo == 'vientoMax') {
         loadGraficoVientoMax(desde, hasta, 'grafico');
     }
-    loadGraficoLinea(tipo, desde, hasta, 'grafico');
+    graficoLinea(tipo, desde, hasta, 'grafico');
 }
 
 
@@ -1133,7 +1005,6 @@ function getFechaActualResta(dias){
     var today = new Date();
     var minus = new Date(today.getTime() - (dias * 24 * 3600 * 1000));
 
-
     var dd = minus.getDate();
     var mm = minus.getMonth() + 1; //January is 0!
     var yyyy = minus.getFullYear();
@@ -1145,14 +1016,119 @@ function getFechaActualResta(dias){
     }
     var minus = yyyy + '-' + mm + '-' + dd;
     return minus;
-
 }
 
 /*Imprime los datos del grafico actual*/
 function printData(){
-
     var url = 'api.php?f=printMeteoData&tipo='+tipo+'&desde='+desde+'&hasta='+hasta+'';
     window.open(url);
+}
+
+//#########################################################################################
+/**
+ * Carga el grafico de linea de acuerdo al tipo
+ * @param tipo Tipo de grafico
+ * @param desde fecha desde donde se desea obtener el grafico
+ * @param hasta fecha hasta donde se desea obtener el grafico
+ * @param grafico componente html donde se cargara el grafico
+ */
+
+function graficoLinea(tipo, desde, hasta, grafico) {
+
+    var medida = getMedida(tipo);
+
+    chartData = new Array();
+    var datos = loadData(tipo, desde, hasta);
+    //Para cada dato...
+    for (var i = 0; i < datos.length; i++) {
+        var meteo = datos[i];
+
+        var arrFecha = meteo.fecha.split('-');
+        var anho = arrFecha[0];
+        var mes = arrFecha[1] - 1;
+        var dia = arrFecha[2];
+
+        var arrHora = meteo.hora.split(':');
+        var hora = arrHora[0];
+        var min = arrHora[1];
+        var seg = arrHora[2];
+
+        var date = new Date(anho, mes, dia, hora, min, seg);
+
+        if (tipo == 'vientoInt' || tipo == 'vientoMax') { //pasa a km/h las velocidades del viento
+            //Carga el dato al Grafico
+            chartData.push({
+                date:date,
+                visits:roundNumber(meteo.data * 3.6, 1)
+            });
+        }
+        else {
+            //Carga el dato al Grafico
+            chartData.push({
+                date:date,
+                visits:meteo.data
+            });
+        }
+    }
+
+    var chart = AmCharts.makeChart( grafico , {
+        "type": "serial",
+        "dataProvider": chartData,
+        "fontFamily" : "Lato",
+        "categoryField": "date",
+          "addClassNames": true,
+        "startDuration": 1,
+
+         // AXES
+            // Category
+            "categoryAxis": {
+                "parseDates": true,
+                "minPeriod" : "mm",
+                "axisColor": "#DADADA",
+                "gridAlpha" : 0.07
+            },
+            // Value
+            "valueAxes": [{
+                "axisAlpha": 0.07,
+                "title": "Datos Obtenidos"
+            }],
+            // GRAPH
+            "graphs": [{
+                "id": "g1",
+                "balloonText": "[[value]] " + medida,
+                "bullet": "round",
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "hideBulletsCount": 50,
+
+                "title": "red line",
+                "valueField": "visits",
+
+                "useLineColorForBulletBorder": true,
 
 
+            }],
+            // CURSOR
+            "chartCursor": {
+                "limitToGraph":"g1",
+                "cursorPosition" : "mouse",
+                "categoryBalloonDateFormat": "JJ:NN, DD MMMM"
+            },
+            //SCROLLBAR
+            "chartScrollbar": {
+                "autoGridCount": true,
+                "graph": "g1",
+                "scrollbarHeight": 40
+            },
+            //ZOOM MOUSE
+             "mouseWheelZoomEnabled": true
+    });
+
+    chart.dayNames = ['Do','Lu','Ma','Mi','Ju','Vi','Sa'];
+    chart.shortDayNames = ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'];
+    chart.monthNames = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    chart.shortMonthNames = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    
+     // SERIAL CHART
+    chart.addListener("dataUpdated", zoomChart);
 }

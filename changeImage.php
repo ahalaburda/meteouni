@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * File: checkBrowser.php
+ * Author: Adrian Halaburda
+ * Last Modified: 21/11/2016
+ * @version 1.0
+ * @package Meteo
+ */
 	function change_image($src_image_dinac) {
 		$i=$src_image_dinac;
 		switch ($i) {

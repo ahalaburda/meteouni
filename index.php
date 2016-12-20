@@ -15,13 +15,11 @@
 		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/modal-w3.css">
+        <link rel="stylesheet" href="css/modal.css">
         <link rel="stylesheet" href="css/estilo.css">
 
         <link rel="stylesheet" href="css/jquery-ui-1.8.21.custom.css">
 
-		
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>
 		<!-- Bootstrap JavaScript -->
@@ -29,17 +27,24 @@
 		<!-- SCROLL REVEAL -->
 		<!-- <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script> -->
 
-		
         <!-- <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script> -->
         <!-- <script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script> -->
-        <script type="text/javascript" src="js/libs/amcharts.js"></script>
+        <!-- <script type="text/javascript" src="js/libs/amcharts.js"></script> -->
         <script type="text/javascript" src="js/libs/jquery-ui-1.8.21.custom.min.js"></script>
-        <script type="text/javascript" src="js/libs/jquery.prettyPhoto.js"></script>       
+        <!-- <script type="text/javascript" src="js/libs/jquery.prettyPhoto.js"></script>        -->
         <!-- <script type="text/javascript" src="js/libs/bootstrap.min.js"></script> -->
         <script type="text/javascript" src="js/plugins.js"></script>
+        <script type="text/javascript" src="js/modal.js"></script>
         <script type="text/javascript" src="js/script.js"></script>
+        
+        <!-- <script type="text/javascript" src="js/libs/amcharts.js"></script> -->
 
-        <script>
+		<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+		<script src="https://www.amcharts.com/lib/3/radar.js"></script>
+		<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+		<link rel="stylesheet" href="http://extra.amcharts.com/support/ameffects.css">
+
+		<script>
 				;(function (window) {
 
 				  'use strict';
@@ -319,14 +324,14 @@
 				  document.addEventListener("DOMContentLoaded", function (evt) {
 				    window.scrollReveal = new scrollReveal();
 				  });
-
 				})(window);
-        </script>
+		</script>
 
 	</head>
 	<body>
 		<?php
 			include ('pronostico.php');
+			include ('checkBrowser.php')
 		?>
 
 		<nav class="navbar navbar-default" role="navigation">
@@ -373,12 +378,10 @@
 			</div>
 		</nav>
 
-
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-right: 0px; padding-left: 0px;">
 					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-						<div id= 	"pronostico" >
+						<div id= "pronostico" >
 							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-right: 0px; padding-left: 0px;">
 								<p id="encarnacion">Encarnación</p >
 								<?php
@@ -419,8 +422,8 @@
 														<br>
 													</div>
 													<div class="well3">
-														<div style="text-align: center;">
-															<span id="boton-pronostico" >Ver Pronostico</span>
+														<div style="text-align: center; cursor: pointer;">
+															<span id="boton-pronostico" >Ver Pronostico </span>
 														</div>
 													</div>
 												</div>
@@ -482,7 +485,7 @@
 														</div>
 													</div>
 													<div class="well3">
-														<div style="text-align: center;">
+														<div style="text-align: center; cursor: pointer;">
 															<span id="boton-pronostico" >Ver Pronostico </span>
 														</div>
 													</div>
@@ -549,7 +552,7 @@
 														</div>
 													</div>
 													<div class="well3">
-														<div style="text-align: center;">
+														<div style="text-align: center; cursor: pointer;">
 															<span id="boton-pronostico" >Ver Pronostico</span>
 														</div>
 													</div>
@@ -582,12 +585,49 @@
 								<div class="well3">
 									<div id="radar" >
 										<div class="hovereffect">
-											<video id="myImg" width="350" height="296" autoplay loop>
-												<source src="img/doppler/video4.webm"  type='video/webm; codecs="vp8, vorbis"' />
-												<source src="img/doppler/video4.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-												<source src="img/doppler/video4.ogv" type='video/ogg; codecs="theora, vorbis"' />
-												Your browser does not support the video tag.
-											</video>
+											<?php  $browser = new Browser();
+													if($browser->isMobile()) {
+														if($browser->getBrowser() == Browser::BROWSER_OPERA  ||  Browser::BROWSER_CHROME || Browser::BROWSER_ANDROID || Browser::BROWSER_IPHONE || Browser::BROWSER_IPOD || Browser::BROWSER_IPAD ){
+															?>
+																<video id="myImg" width="350" height="310" controls loop >
+																	<source src="img/doppler/video4.webm"  type='video/webm; codecs="vp8, vorbis"' />
+																	<source src="img/doppler/video4.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+																	<source src="img/doppler/video4.ogv" type='video/ogg; codecs="theora, vorbis"' />
+																	Your browser does not support the video tag.
+																</video>
+															<?php
+														}else{
+															?>
+																	<video id="myImg" width="350" height="310" autoplay loop >
+																		<source src="img/doppler/video4.webm"  type='video/webm; codecs="vp8, vorbis"' />
+																		<source src="img/doppler/video4.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+																		<source src="img/doppler/video4.ogv" type='video/ogg; codecs="theora, vorbis"' />
+																		Your browser does not support the video tag.
+																	</video>
+															<?php
+														}
+													} else {
+														if($browser->getBrowser() == Browser::BROWSER_FIREFOX  ||  Browser::BROWSER_CHROME ) {
+																?>
+																	<video id="myImg" width="350" height="310" autoplay loop >
+																		<source src="img/doppler/video4.webm"  type='video/webm; codecs="vp8, vorbis"' />
+																		<source src="img/doppler/video4.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+																		<source src="img/doppler/video4.ogv" type='video/ogg; codecs="theora, vorbis"' />
+																		Your browser does not support the video tag.
+																	</video>
+																<?php
+														} else {
+																?>
+																	<video id="myImg" width="350" height="310" autoplay loop >
+																		<source src="img/doppler/video4.webm"  type='video/webm; codecs="vp8, vorbis"' />
+																		<source src="img/doppler/video4.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+																		<source src="img/doppler/video4.ogv" type='video/ogg; codecs="theora, vorbis"' />
+																		Your browser does not support the video tag.
+																	</video>
+																<?php
+														}
+													}
+											?>
 											<div id="overlay1" class="overlay">
 												<a class="info" href="#" title="">
 													<span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span>
@@ -596,7 +636,7 @@
 										</div>
 										<div id="myModal" class="modal">
 											<span class="close">×</span>
-											<video class="modal-content" id="img01"  autoplay loop>
+											<video class="modal-content" id="img01"  autoplay controls loop >
 												<source src="img/doppler/video3.webm" type='video/webm; codecs="vp8, vorbis"' />
 												<source src="img/doppler/video3.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
 												<source src="img/doppler/video3.ogv" type='video/ogg; codecs="theora, vorbis"' />
@@ -729,56 +769,35 @@
 													</div>
 												</div>
 												<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 hidden-xs">
-													<div id="botonera">
-														<div id="botonera-content">
-															<span class="plus">
-																<a href="#" title="Lorem ipsum">
-																	<i id="gbtn" class="glyphicon glyphicon-plus"></i>
-																</a>
-															</span>
+													<div id="botonera1">
+														<div>
+															<div class="boton" id="btnGrafTemp" href="#"><i id="gbtn1" class="glyphicon glyphicon-plus"></i></div>
 														</div>
 													</div>
 												</div>
 												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="grafico1">
-													<ul class="nav nav-tabs">
-														<li class="active" ><a data-toggle="tab" id="aTabTemp" href="#tabTemp">Temperatura</a></li>
-														<li><a data-toggle="tab" id="aTabTempMaxMin" href="#tabTempMaxMin">Máximas vs Mínimas</a></li>
-													</ul>
-													<div class="tab-content">
-														<div id="tabTemp" class="tab-pane fade active in">
-															<div id="graficoTemp" style="
-															    background: white;
-															    height: 350px;
-															">
-															<!-- <img src="img/cargando.gif"> -->
-																<div class="pre">
-																	<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve" width="30" height="30">
-																		<rect fill="#FBBA44" width="15" height="15">
-																			<animateTransform attributeName="transform" attributeType="XML" type="translate" dur="1.7s" values="0,0;15,0;15,15;0,15;0,0;" repeatCount="indefinite"/>
-																		</rect>
-																		<rect x="15" fill="#E84150" width="15" height="15">
-																			<animateTransform attributeName="transform" attributeType="XML" type="translate" dur="1.7s" values="0,0;0,15;-15,15;-15,0;0,0;" repeatCount="indefinite"/>
-																		</rect>
-																		<rect x="15" y="15" fill="#62B87B" width="15" height="15">
-																			<animateTransform attributeName="transform" attributeType="XML" type="translate" dur="1.7s" values="0,0;-15,0;-15,-15;0,-15;0,0;" repeatCount="indefinite"/>
-																		</rect>
-																		<rect y="15" fill="#2F6FB6" width="15" height="15">
-																			<animateTransform attributeName="transform" attributeType="XML" type="translate" dur="1.7s" values="0,0;0,-15;15,-15;15,0;0,0;" repeatCount="indefinite"/>
-																		</rect>
-																	</svg>
+													<div id="tabsTemperatura">
+														<ul class="nav nav-tabs">
+															<li class="active" ><a data-toggle="tab" id="aTabTemp" href="#tabTemp">Temperatura</a></li>
+															<li><a data-toggle="tab" id="aTabTempMaxMin" href="#tabTempMaxMin">Máximas vs Mínimas</a></li>
+														</ul>
+														<div class="tab-content">
+															<div id="tabTemp" class="tab-pane fade active in">
+																<div id="graficoTemp">
+																	<img src="img/cargando.gif">
 																</div>
 															</div>
-														</div>
-														<div id="tabTempMaxMin" class="tab-pane fade">
-															<div id="graficoTempMaxMin">
-																<img src="img/cargando.gif">
+															<div id="tabTempMaxMin" class="tab-pane fade">
+																<div id="graficoTempMaxMin">
+																	<img src="img/cargando.gif">
+																</div>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</section>
-								        <!-- Velocidad del Viento -->
+										<!-- Velocidad del Viento -->
 										<section>
 											<div class="lecturas row well3" data-scrollreveal="enter top over 0.5s and move 200px after 0.3s">
 												<p class="lectura-titulo">Velocidad del Viento</p>
@@ -794,28 +813,47 @@
 													</div>
 												</div>
 												<div class="col-xs-6 col-sm-7 col-md-7">
-								                    <div class="right">
-								                        <div class="top"><b>Max: <label id="velVeintoMax"></label> Km/h </b>a las <label
-								                                id="horaVientoMax"></label> hs
-								                        </div>
-								                        <div class="button"><b> Dir: <label id="dirVientoMax"></label> <label id="graVientoMax"></label>° </b>
-								                        </div>
-								                    </div>
+													<div class="right">
+														<div class="top">
+															<b>Max: <label id="velVeintoMax"></label> Km/h </b>a las 
+															<label id="horaVientoMax"></label> hs
+														</div>
+														<div class="button">
+															<b> Dir: <label id="dirVientoMax"></label>
+															<label id="graVientoMax"></label>° </b>
+														</div>
+													</div>
 												</div>
 												<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 hidden-xs">
-													<div id="botonera">
-														<div id="botonera-content">
-															<span class="plus">
-																<a href="#" title="Lorem ipsum">
-																	<i class="glyphicon glyphicon-plus"></i>
-																</a>
-															</span>
+													<div id="botonera2">
+														<div>
+															<div class="boton" id="btnGrafVientoVel" href="#"><i id="gbtn2" class="glyphicon glyphicon-plus"></i></div>
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="grafico2">
+													<div id="tabsVientoVel">
+														<ul class="nav nav-tabs">
+															<li class="active" ><a data-toggle="tab" id="aTabVientoVel" href="#tabVientoVel">Velocidad</a></li>
+															<li><a data-toggle="tab" id="aTabVientoMax" href="#aTabVientoMax">Máximo</a></li>
+														</ul>
+														<div class="tab-content">
+															<div id="tabVientoVel" class="tab-pane fade active in">
+																<div id="graficoVientoVel">
+																	<img src="img/cargando.gif">
+																</div>
+															</div>
+															<div id="tabVientoMax" class="tab-pane fade">
+																<div id="graficoVientoMax">
+																	<img src="img/cargando.gif">
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</section>
-								        <!-- Dirección del Viento -->
+										<!-- Dirección del Viento -->
 										<section>
 											<div class="lecturas row well3 " data-scrollreveal="enter top over 0.5s and move 200px after 0.4s">
 												<p class="lectura-titulo">Dirección del Viento</p>
@@ -830,19 +868,33 @@
 													</div>
 												</div>
 												<div class="col-xs-6 col-sm-7 col-md-7">
-								                    <div class="right">
-								                        <div class="top"><b>Predominante del Día: <label id="dirVientoPre"></label> </b></div>
-								                        <div class="button"><b> Lecturas: <label id="dirVientoLect"></label> veces</b></div>
-								                    </div>
+													<div class="right">
+														<div class="top"><b>Predominante del Día: <label id="dirVientoPre"></label> </b></div>
+														<div class="button"><b> Lecturas: <label id="dirVientoLect"></label> veces</b></div>
+													</div>
 												</div>
 												<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 hidden-xs">
-													<div id="botonera">
-														<div id="botonera-content">
-															<span class="plus">
-																<a href="#" title="Lorem ipsum">
-																	<i class="glyphicon glyphicon-plus"></i>
-																</a>
-															</span>
+													<div id="botonera3">
+														<div>
+															<div class="boton" id="btnGrafVientoDir" href="#"><i id="gbtn3" class="glyphicon glyphicon-plus"></i></div>
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="grafico3" >
+													<ul class="nav nav-tabs">
+														<li class="active" ><a data-toggle="tab" id="aTabVientDir" href="#tabVientoDir">Dirección</a></li>
+														<li><a data-toggle="tab" id="aTabVientoPre" href="#tabVientoPre">Predominante del Día</a></li>
+													</ul>
+													<div class="tab-content">
+														<div id="tabVientoDir" class="tab-pane fade active in">
+															<div id="graficoVientoDir">
+																<img src="img/cargando.gif">
+															</div>
+														</div>
+														<div id="tabVientoPre" class="tab-pane fade">
+															<div id="graficoVientoPre">
+																<img src="img/cargando.gif">
+															</div>
 														</div>
 													</div>
 												</div>
@@ -869,13 +921,21 @@
 													</div>
 												</div>
 												<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 hidden-xs">
-													<div id="botonera">
-														<div id="botonera-content">
-															<span class="plus">
-																<a href="#" title="Lorem ipsum">
-																	<i class="glyphicon glyphicon-plus"></i>
-																</a>
-															</span>
+													<div id="botonera4">
+														<div>
+															<div class="boton" id="btnGrafPrecipitaciones" href="#"><i id="gbtn4" class="glyphicon glyphicon-plus"></i></div>
+														</div>
+													</div>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="grafico4">
+													<ul class="nav nav-tabs">
+														<li class="active" ><a data-toggle="tab" id="aTabPrecipitaciones" href="#tabPrecipitaciones">Precipitaciones</a></li>
+													</ul>
+													<div class="tab-content">
+														<div id="tabPrecipitaciones" class="tab-pane fade active in">
+															<div id="graficoPrecipitaciones">
+																<img src="img/cargando.gif">
+															</div>
 														</div>
 													</div>
 												</div>
@@ -886,17 +946,18 @@
 							</div>
 						</div>
 					</div>		
-				</div>
+				<!-- </div> -->
 			</div> <!-- row -->
 		</div> <!-- container -->
 
+
 		<footer>
 			<div class="row" style="width: 100% !important";>
-				<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2 hidden-xs">
+				<div class="col-xs-6 col-sm-6 col-md-4 col-lg-2 hidden-xs">
 					<div id="imagen-footer">
 						<a href="http://www.uni.edu.py" target="_blank">
 							<div class="logo">
-								<img src="img/uni.png" alt="uni" >
+								<img src="img/uni3.svg" alt="uni" >
 							</div>
 						</a>
 						 <a href="http://www.meteorologia.gov.py" target="_blank">
@@ -910,69 +971,72 @@
 					<p id="descripcion">Esta página es producto de tareas en conjunto entre el Departamento de Informática de la Universidad Nacional de Itapúa y la Dirección de Meteorología e Hidrología de la DINAC, en el marco del convenio entre ambas partes.</p>
 				</div>
 				<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-					<a href="http://www.uni.edu.py" target="_blank">
-						<h3>UNI</h3>
-					</a>
-					<div class="footer-center inline">
-						<div>
-							<div class="input-group">
-								<span class="input-group-btn">
-									<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Universidad+Nacional+de+Itap%C3%BAa/@-27.3069477,-55.8873538,18z/data=!4m5!3m4!1s0x0:0xf31765db5e25c553!8m2!3d-27.3067583!4d-55.8874941?hl=es-419" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
-								</span>
-								<p style="line-height: 11px;">Abog. Lorenzo Zacarías 255 y Ruta 1 - <span>Encarnación, Paraguay</span></p>
-							</div><!-- /input-group -->
-						</div>
-						<div>
-							<div class="input-group">
-								<span class="input-group-btn">
-									<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
-								</span>
-								<p>+595 71 206990</p>
-							</div><!-- /input-group -->
-						</div>
-						<div>
-							<div class="input-group">
-								<span class="input-group-btn">
-									<a class="btn btn-xs btn-square" href="mailto:informatica@uni.edu.py" target="_blank" role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  </a>
-								</span>
-								<p>informatica@uni.edu.py</p>
-							</div><!-- /input-group -->
+					<div class="pequeño">
+						<a href="http://www.uni.edu.py" target="_blank" data-toggle="tooltip" data-placement="left" title="Ir al sitio de la Universidad Nacional de Itapúa">
+							<h3>UNI</h3>
+						</a>
+						<div class="footer-center inline">
+							<div>
+								<div class="input-group">
+									<span class="input-group-btn"  data-toggle="tooltip" data-placement="left" title="Ver donde esta ubicado">
+										<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Universidad+Nacional+de+Itap%C3%BAa/@-27.3069477,-55.8873538,18z/data=!4m5!3m4!1s0x0:0xf31765db5e25c553!8m2!3d-27.3067583!4d-55.8874941?hl=es-419" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
+									</span>
+									<p style="line-height: 11px;">Abog. Lorenzo Zacarías 255 y Ruta 1 - <span>Encarnación, Paraguay</span></p>
+								</div><!-- /input-group -->
+							</div>
+							<div>
+								<div class="input-group">
+									<span class="input-group-btn">
+										<button class="btn btn-xs btn-square" style="cursor: none;" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+									</span>
+									<p>+595 71 206990</p>
+								</div><!-- /input-group -->
+							</div>
+							<div>
+								<div class="input-group">
+									<span class="input-group-btn" data-toggle="tooltip" data-placement="left" title="Enviar un correo al desarrollador">
+										<a class="btn btn-xs btn-square" href="mailto:informatica@uni.edu.py" target="_blank" role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>  </a>
+									</span>
+									<p>informatica@uni.edu.py</p>
+								</div><!-- /input-group -->
+							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2">
-					<a href="http://www.meteorologia.gov.py" target="_blank">
-						<h3>DINAC</h3>
-					</a>
-					<div class="footer-center ">
-						<div>
-							<div class="input-group">
-								<span class="input-group-btn">
-									<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Centro+Meteorol%C3%B3gico+Nacional/@-25.2864383,-57.6553166,15z/data=!4m5!3m4!1s0x0:0x9626810dc66e423c!8m2!3d-25.2864383!4d-57.6553166" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
-								</span>
-								<p style="line-height: 11px;">Cnel Francisco López 1080 c/ De La Conquista - <span>Asunción, Paraguay</span></p>
-							</div><!-- /input-group -->
+					<div class="pequeño">
+						<a href="http://www.meteorologia.gov.py" target="_blank" data-toggle="tooltip" data-placement="left" title="Ir al sitio de la Direccion de Meteorologia e Hidrología de la DINAC">
+							<h3>DINAC</h3>
+						</a>
+						<div class="footer-center ">
+							<div>
+								<div class="input-group">
+									<span class="input-group-btn" data-toggle="tooltip" data-placement="left" title="Ver donde esta ubicado" >
+										<a class="btn btn-xs btn-square" href="https://www.google.com.py/maps/place/Centro+Meteorol%C3%B3gico+Nacional/@-25.2864383,-57.6553166,15z/data=!4m5!3m4!1s0x0:0x9626810dc66e423c!8m2!3d-25.2864383!4d-57.6553166" target="_blank" role="button"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>  </a>
+									</span>
+									<p style="line-height: 11px;">Cnel Francisco López 1080 c/ De La Conquista - <span>Asunción, Paraguay</span></p>
+								</div><!-- /input-group -->
+							</div>
+							<div>
+								<div class="input-group">
+									<span class="input-group-btn">
+										<button class="btn btn-xs btn-square" style="cursor: none;" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+									</span>
+									<p>+595 21 4381000</p>
+								</div><!-- /input-group -->
+							</div>
+							<div>
+								<div class="input-group">
+									<span class="input-group-btn">
+										<button class="btn btn-xs btn-square" style="cursor: none;" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+									</span>
+									<p>+595 21 4381220</p>
+								</div><!-- /input-group -->
+							</div>
 						</div>
-						<div>
-							<div class="input-group">
-								<span class="input-group-btn">
-									<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
-								</span>
-								<p>+595 21 4381000</p>
-							</div><!-- /input-group -->
-						</div>
-						<div>
-							<div class="input-group">
-								<span class="input-group-btn">
-									<button class="btn btn-xs btn-square" ><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
-								</span>
-								<p>+595 21 4381220</p>
-							</div><!-- /input-group -->
-						</div>
-						
 					</div>
 				</div>
-				<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 hidden-xs hidden-sm">
+				<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 hidden-xs hidden-sm hidden-md">
 					<ul>
 						<li><a href="http://www.meteorologia.gov.py/adm/uploads/Tasas.pdf" target="_blank" title="Tasas y tarifas establecidas para reportes del servicio meteorologico para el publico en general">Precios</a></li>
 						<li><a href="http://www.meteorologia.gov.py/serviciopublico.php" target="_blank" title="">Consultas</a></li>
@@ -984,35 +1048,5 @@
 				<p style="margin-bottom: 0px;">Copyright © 2016 Universidad Nacional de Itapúa.</p>
 			</div>
 		</footer>
-				<script>
-			// Get the modal
-			var modal = document.getElementById('myModal');
-
-			// Get the image and insert it inside the modal - use its "alt" text as a caption
-			var btn = document.getElementById("overlay1");
-
-			// var img = document.getElementById('myImg');
-			// var modalImg = document.getElementById("img01");
-			var captionText = document.getElementById("caption");
-			btn.onclick = function(){
-				modal.style.display = "block";
-				// modalImg.src = "img/doppler/video3.mp4";
-				// captionText.innerHTML = img.alt;
-			}
-
-			// Get the <span> element that closes the modal
-			var span = document.getElementsByClassName("close")[0];
-
-			// When the user clicks on <span> (x), close the modal
-			span.onclick = function() {
-				modal.style.display = "none";
-			}
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-		    if (event.target == modal) {
-		        modal.style.display = "none";
-		    }
-		}
-		</script>
 	</body>
 </html>

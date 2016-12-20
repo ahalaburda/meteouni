@@ -24,7 +24,12 @@
 
     <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
     <script type="text/javascript" src="js/libs/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="js/libs/amcharts.js"></script>
+    
+        <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+        <script src="https://www.amcharts.com/lib/3/radar.js"></script>
+        <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
     <script type="text/javascript" src="js/libs/jquery-ui-1.8.21.custom.min.js"></script>
     <script type="text/javascript" src="js/libs/jquery.prettyPhoto.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
