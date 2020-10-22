@@ -7,7 +7,6 @@
 <?php
 $servidor = "localhost";
 $dbusuario = "root";
-// $dbpassword = "VtpuKQQpsvyG3v2z";
 $dbpassword = "123";
 $dbpuerto = "3306";
 $basededatos = "meteorologia";
